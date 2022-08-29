@@ -3,4 +3,5 @@ class Vehicle < ApplicationRecord
 
   has_many :maintenances
   has_many :wishlists
+  has_many :problems
 end
