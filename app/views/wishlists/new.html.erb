@@ -1,0 +1,9 @@
+<h1>Add a new Item to your Wishlist</h1>
+
+<%= simple_form_for [@vehicle, @wishlist] do |f| %>
+<%= f.input :name %>
+<%= f.input :url %>
+<%= f.submit %>
+<% end %>
+<br>
+<%= link_to "Back", vehicle_wishlists_path(@vehicle) %>
