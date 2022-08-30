@@ -2,7 +2,6 @@ class ProblemsController < ApplicationController
   def index
     @vehicle = Vehicle.find(params[:vehicle_id])
     @problems = @vehicle.problems
-    end
   end
 
   def show
