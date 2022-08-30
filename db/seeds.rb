@@ -46,11 +46,11 @@ puts '----------------------------------------------------'
 puts '---------------- Creating some Vehicles ------------'
 puts '------------------ Please wait ... -----------------'
 
-v1 = Vehicle.create(type_of_vehicle: 'Car', make: 'BMW', model: 'M5', plate: '73-TR-11', year: 2020, mileage: 3000, driver: 'Alex', user_id: rafa.id )
-v2 = Vehicle.create(type_of_vehicle: 'Motorcycle', make: 'Yamaha', model: 'R1', plate: '69-BB-69', year: 2022, mileage: 1500, driver: 'Joao', user_id: joao.id )
-v3 = Vehicle.create(type_of_vehicle: 'Car', make: 'Ferrari', model: 'SF90', plate: '54-HS-87', year: 2020, mileage: 10, driver: 'Lochlan', user_id: alex.id )
-v4 = Vehicle.create(type_of_vehicle: 'Car', make: 'Mercedes-Benz', model: 'A180', plate: '92-RT-74', year: 2005, mileage: 100000, driver: 'Joao', user_id: loch.id )
-v5 = Vehicle.create(type_of_vehicle: 'Car', make: 'Lamborghini', model: 'Huracan', plate: '12-JT-45', year: 2012, mileage: 30000, driver: 'Rafa', user_id: joao.id )
+Vehicle.create(type_of_vehicle: 'Car', make: 'BMW', model: 'M5', plate: '73-TR-11', year: 2020, mileage: 3000, driver: 'Alex', user_id: rafa.id)
+Vehicle.create(type_of_vehicle: 'Motorcycle', make: 'Yamaha', model: 'R1', plate: '69-BB-69', year: 2022, mileage: 1500, driver: 'Joao', user_id: joao.id)
+Vehicle.create(type_of_vehicle: 'Car', make: 'Ferrari', model: 'SF90', plate: '54-HS-87', year: 2020, mileage: 10, driver: 'Lochlan', user_id: alex.id)
+Vehicle.create(type_of_vehicle: 'Car', make: 'Mercedes-Benz', model: 'A180', plate: '92-RT-74', year: 2005, mileage: 100_000, driver: 'Joao', user_id: loch.id)
+Vehicle.create(type_of_vehicle: 'Car', make: 'Lamborghini', model: 'Huracan', plate: '12-JT-45', year: 2012, mileage: 30_000, driver: 'Rafa', user_id: joao.id)
 
 puts '----------------------------------------------------'
 puts '--------- All Vehicles created successfully --------'
