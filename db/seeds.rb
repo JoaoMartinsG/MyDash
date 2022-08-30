@@ -62,13 +62,13 @@ puts '------------------ Please wait ... -----------------'
 
 @vehicles = Vehicle.all
 @vehicles.each do |vehicle|
-  maintenance = Maintenance.new(title: 'Pay IUC', description: 'Pay circulation tax', recorrency: 1, priority: 'High', price: 150, status: 0)
+  maintenance = Maintenance.new(title: 'Pay IUC', description: 'Pay circulation tax', recorrency: 1, priority: 'High', price: 150, status: 'Done')
   maintenance.vehicle_id = vehicle.id
   maintenance.save
-  maintenance = Maintenance.new(title: 'Pay Insurance', description: 'Pay Insurance', recorrency: 1, priority: 'High', price: 300, status: 0)
+  maintenance = Maintenance.new(title: 'Pay Insurance', description: 'Pay Insurance', recorrency: 1, priority: 'High', price: 300)
   maintenance.vehicle_id = vehicle.id
   maintenance.save
-  maintenance = Maintenance.new(title: 'Take car for inspection', description: 'Take car for inspection', recorrency: 2, priority: 'High', price: 35, status: 0)
+  maintenance = Maintenance.new(title: 'Take car for inspection', description: 'Take car for inspection', recorrency: 2, priority: 'High', price: 35)
   maintenance.vehicle_id = vehicle.id
   maintenance.save
 end
@@ -82,7 +82,7 @@ puts '------------- Creating some Problems ---------------'
 puts '------------------ Please wait ... -----------------'
 
 @vehicles.each do |vehicle|
-  problem = Problem.new(title: 'Engine Noise', description: 'Ticking Noise in Engine Bay', priority: 'High', price: 150, status: 0)
+  problem = Problem.new(title: 'Engine Noise', description: 'Ticking Noise in Engine Bay', priority: 'High', price: 150)
   problem.vehicle_id = vehicle.id
   problem.save
 end
@@ -96,7 +96,7 @@ puts '---------- Creating some Wishlist Items ------------'
 puts '------------------ Please wait ... -----------------'
 
 @vehicles.each do |vehicle|
-  item = Wishlist.new(name: 'New Exhaust', url: 'testurl.com', status: 0)
+  item = Wishlist.new(name: 'New Exhaust', url: 'testurl.com', status: 'Bought', price: 150)
   item.vehicle_id = vehicle.id
   item.save
 end
