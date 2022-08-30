@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_30_160700) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_30_161445) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -21,7 +21,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_30_160700) do
     t.string "priority"
     t.integer "recorrency"
     t.float "price", default: 0.0
-    t.integer "status", default: 0
+    t.string "status", default: "Undone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["vehicle_id"], name: "index_maintenances_on_vehicle_id"
@@ -32,7 +32,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_30_160700) do
     t.string "description"
     t.string "priority"
     t.float "price", default: 0.0
-    t.integer "status", default: 0
+    t.string "status", default: "Unresolved"
     t.bigint "vehicle_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -70,7 +70,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_30_160700) do
   create_table "wishlists", force: :cascade do |t|
     t.string "name"
     t.string "url"
-    t.integer "status", default: 0
+    t.string "status", default: "Not Bought Yet"
     t.bigint "vehicle_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
