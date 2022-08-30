@@ -4,6 +4,6 @@ Rails.application.routes.draw do
   resources :vehicles do
     resources :maintenances
     resources :problems
-    resources :wishlist
+    resources :wishlists
   end
 end
