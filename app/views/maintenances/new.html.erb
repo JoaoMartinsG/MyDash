@@ -1,0 +1,10 @@
+<h1>Add a new maintenance item to your vehicle </h1>
+
+<%= simple_form_for [@vehicle, @maintenance] do |f| %>
+<%= f.input :title %>
+<%= f.input :description %>
+<%= f.input :priority, collection: ['Low', 'Medium', 'High'] %>
+<%= f.input :recorrency %>
+<%= f.input :price %>
+<%= f.submit %>
+<% end %>

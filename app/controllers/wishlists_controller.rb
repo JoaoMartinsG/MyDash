@@ -2,7 +2,6 @@ class WishlistsController < ApplicationController
   def index
     @vehicle = Vehicle.find(params[:vehicle_id])
     @wishlists = @vehicle.wishlists
-    # @wishlists = Wishlist.all
   end
 
   def show
@@ -27,6 +26,7 @@ class WishlistsController < ApplicationController
   end
 
   def edit
+    @vehicle = Vehicle.find(params[:vehicle_id])
     @wishlist = Wishlist.find(params[:id])
   end
 
@@ -34,12 +34,12 @@ class WishlistsController < ApplicationController
     @vehicle = Vehicle.find(params[:vehicle_id])
     @wishlist = Wishlist.find(params[:id])
     @wishlist.update(wishlist_params)
-    redirect_to vehicle_wishlists_path(@vehicle)
+    redirect_to vehicle_wishlist_path(@wishlist)
   end
 
   private
 
   def wishlist_params
-    params.require(:wishlist).permit(:name, :url, :status)
+    params.require(:wishlist).permit(:name, :url, :price, :status)
   end
 end
