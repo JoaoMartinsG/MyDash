@@ -1,19 +1,5 @@
 <h1>All vehicles</h1>
 
-
-<div class="tab-content" id="myTabContent">
-  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-    <p>Home</p>
-  </div>
-  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-    <p>profile</p>
-  </div>
-  <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-
-  </div>
-
-
-
 <% @vehicles.each do |vehicle| %>
   <h2><strong>Owner:</strong> <%= vehicle.user.first_name %> <%= vehicle.user.last_name %></h2>
   <h3><strong>Make: </strong><%= vehicle.make %></h3>

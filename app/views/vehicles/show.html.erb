@@ -1,0 +1,73 @@
+<div class = 'd-flex justify-content-center mt-5'>
+  <h2 style = 'font-size: 20px'><strong><%= @vehicle.make %> <%= @vehicle.model %> - <%= @vehicle.year %></strong></h2>
+</div>
+<div class = 'd-flex justify-content-center'>
+  <p><%= @vehicle.plate %></p>
+</div>
+
+<div class= 'd-flex justify-content-center mt-3'>
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button class="nav-link active" id="overview-tab" data-bs-toggle="tab" data-bs-target="#overview" type="button" role="tab" aria-controls="home" aria-selected="true">Overview</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="maintenance-tab" data-bs-toggle="tab" data-bs-target="#maintenance" type="button" role="tab" aria-controls="maintenance" aria-selected="false">Maintenance</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="problems-tab" data-bs-toggle="tab" data-bs-target="#problems" type="button" role="tab" aria-controls="problems" aria-selected="false">Problems</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="wishlist-tab" data-bs-toggle="tab" data-bs-target="#wishlist" type="button" role="tab" aria-controls="wishlist" aria-selected="false">Wishlist</button>
+    </li>
+  </ul>
+</div>
+
+
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
+    <p>Overview</p>
+  </div>
+  <div class="tab-pane fade" id="maintenance" role="tabpanel" aria-labelledby="maintenance-tab">
+    <p>Maintenance</p>
+  </div>
+  <div class="tab-pane fade" id="problems" role="tabpanel" aria-labelledby="problems-tab">
+    <p>Problems</p>
+    <div class='mx-3'>
+      <div class='mt-3 text-center'>
+        <p><strong>Your Wishlist</strong></p>
+      </div>
+      <ul class="list-group">
+        <% @vehicle.wishlists.each do |wishlist| %>
+          <li class="list-group-item d-flex justify-content-between">
+            <p><%= wishlist.name %>&nbsp;</p>
+            <p><%= wishlist.price %>EUR&nbsp;</p>
+            <p><i class="fa-solid fa-ellipsis"></i></p>
+          </li>
+          <li class="list-group-item">Dapibus ac facilisis in</li>
+          <li class="list-group-item">Morbi leo risus</li>
+          <li class="list-group-item">Porta ac consectetur ac</li>
+          <li class="list-group-item">Vestibulum at eros</li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+  <div class="tab-pane fade" id="wishlist" role="tabpanel" aria-labelledby="wishlist-tab">
+    <div class='mx-3'>
+      <div class='mt-3 text-center'>
+        <p><strong>Your Wishlist</strong></p>
+      </div>
+      <ul class="list-group">
+        <% @vehicle.wishlists.each do |wishlist| %>
+          <li class="list-group-item d-flex justify-content-between">
+            <p><%= wishlist.name %>&nbsp;</p>
+            <p><%= wishlist.price %>EUR&nbsp;</p>
+            <p><i class="fa-solid fa-ellipsis"></i></p>
+          </li>
+          <li class="list-group-item">Dapibus ac facilisis in</li>
+          <li class="list-group-item">Morbi leo risus</li>
+          <li class="list-group-item">Porta ac consectetur ac</li>
+          <li class="list-group-item">Vestibulum at eros</li>
+        <% end %>
+      </ul>
+    </div>
+  </div>

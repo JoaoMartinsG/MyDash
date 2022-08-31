@@ -1,0 +1,28 @@
+body {
+  min-height: 100vh;
+  font-family: 'Poppins', sans-serif;
+}
+
+li p {
+  margin-bottom: 0;
+}
+.nav {
+--bs-nav-link-color: #595959;
+--bs-nav-link-hover-color: #0a58ca;
+--bs-nav-link-disabled-color: #6c757d;
+}
+
+.nav-tabs {
+  border-bottom: var(--bs-nav-tabs-border-width) solid #696969 !important;
+}
+
+.nav-item .active {
+  border-bottom: 1px solid black !important;
+  border-top: 0 !important;
+  border-left: 0 !important;
+  border-right: 0 !important;
+  background-color: transparent !important;
+}
+.nav-item button {
+  font-size: 9px;
+}
