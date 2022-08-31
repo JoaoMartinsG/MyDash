@@ -1,0 +1,9 @@
+<h1>Add a new problem to your vehicle </h1>
+
+<%= simple_form_for [@vehicle, @problem] do |f| %>
+<%= f.input :title %>
+<%= f.input :description %>
+<%= f.input :priority, collection: ['Low', 'Medium', 'High'] %>
+<%= f.input :price %>
+<%= f.submit %>
+<% end %>
