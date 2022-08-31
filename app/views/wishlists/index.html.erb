@@ -1,7 +1,7 @@
 <h1>All WishLists</h1>
 
-<% @wishlists.each do |wishlist| %>
-  <h2><strong>Name:</strong> <%= wishlist.name %></h2>
-  <h3><strong>Url: </strong><%= wishlist.url %></h3>
-  <h3><strong>Status: </strong><%= wishlist.status %></h3>
-<% end %>
+  <% @wishlists.each do |wishlist| %>
+    <h2><strong>Name:</strong> <%= wishlist.name %></h2>
+    <h3><strong>Url: </strong><%= wishlist.url %></h3>
+    <h3><strong>Status: </strong><%= wishlist.status %></h3>
+  <% end %>
