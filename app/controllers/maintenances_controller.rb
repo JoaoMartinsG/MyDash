@@ -37,6 +37,13 @@ class MaintenancesController < ApplicationController
     redirect_to vehicle_maintenance_path(@maintenance)
   end
 
+  def destroy
+    @vehicle = Vehicle.find(params[:vehicle_id])
+    @maintenance = Maintenance.find(params[:id])
+    @maintenance.vehicle.destroy
+    redirect_to vehicle_maintenances_path(@vehicle), status: :see_other
+  end
+
   private
 
   def maintenance_params

@@ -32,6 +32,12 @@ class VehiclesController < ApplicationController
     redirect_to vehicle_path(@vehicle)
   end
 
+  def destroy
+    @vehicle = Vehicle.find(params[:id])
+    @vehicle.destroy
+    redirect_to vehicle_path, status: :see_other
+  end
+
   private
 
   def vehicle_params
