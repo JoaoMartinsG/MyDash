@@ -25,28 +25,50 @@
 
 <div class="tab-content" id="myTabContent">
   <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
-    <p>Overview</p>
+    <p>Number of Maintenance Tasks: <%= @vehicle.maintenances.count %></p>
+    <p>Number of Problems: <%= @vehicle.problems.count %></p>
+    <p>Number of wishlist Items: <%= @vehicle.wishlists.count %></p>
+
+    <p>Money Spent on Maintenance: <%= @vehicle.maintenances.sum(:price).round %>€</p>
+    <p>Money Spent on Problems: <%= @vehicle.problems.sum(:price).round %>€</p>
+    <p>Money Spent on Wishlist items: <%= @vehicle.wishlists.sum(:price).round %>€</p>
+
   </div>
   <div class="tab-pane fade" id="maintenance" role="tabpanel" aria-labelledby="maintenance-tab">
     <p>Maintenance</p>
+    <div class='mx-3'>
+      <div class='mt-3 text-center'>
+        <p><strong>Your Maintenance Tasks:</strong></p>
+      </div>
+      <ul class="list-group">
+        <% @vehicle.maintenances.each do |maintenance| %>
+          <li class="list-group-item d-flex justify-content-between" data-controller = "display-info">
+            <div class="wishlist-infos" data-display-info-target="infos">
+              <h2><%= maintenance.title %> <small><%= maintenance.price %></small></h2>
+              <button aria-label="Show WishlistInfo">
+                <i class="fa-solid fa-pen fa-xs ml-2" data-action="click->display-info#displayForm"></i>
+              </button>
+              <p class="d-none" data-display-info-target="form">test</p>
+            </div>
+            <div><i class="fa-solid fa-ellipsis"></i></div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
   </div>
   <div class="tab-pane fade" id="problems" role="tabpanel" aria-labelledby="problems-tab">
     <p>Problems</p>
     <div class='mx-3'>
       <div class='mt-3 text-center'>
-        <p><strong>Your Wishlist</strong></p>
+        <p><strong>Your Problems</strong></p>
       </div>
       <ul class="list-group">
-        <% @vehicle.wishlists.each do |wishlist| %>
+        <% @vehicle.problems.each do |problem| %>
           <li class="list-group-item d-flex justify-content-between">
-            <p><%= wishlist.name %>&nbsp;</p>
-            <p><%= wishlist.price %>EUR&nbsp;</p>
-            <p><i class="fa-solid fa-ellipsis"></i></p>
+            <p><%= problem.title %>&nbsp;</p>
+            <p><%= problem.price %>EUR&nbsp;</p>
+            <p><i class="fa-solid fa-ellipsis"></i> <i class="fa-solid fa-chevron-down"></i></p>
           </li>
-          <li class="list-group-item">Dapibus ac facilisis in</li>
-          <li class="list-group-item">Morbi leo risus</li>
-          <li class="list-group-item">Porta ac consectetur ac</li>
-          <li class="list-group-item">Vestibulum at eros</li>
         <% end %>
       </ul>
     </div>
@@ -61,12 +83,9 @@
           <li class="list-group-item d-flex justify-content-between">
             <p><%= wishlist.name %>&nbsp;</p>
             <p><%= wishlist.price %>EUR&nbsp;</p>
-            <p><i class="fa-solid fa-ellipsis"></i></p>
+            <p><i class="fa-solid fa-ellipsis"></i> <i class="fa-solid fa-chevron-down"></i></p>
           </li>
-          <li class="list-group-item">Dapibus ac facilisis in</li>
-          <li class="list-group-item">Morbi leo risus</li>
-          <li class="list-group-item">Porta ac consectetur ac</li>
-          <li class="list-group-item">Vestibulum at eros</li>
+
         <% end %>
       </ul>
     </div>
