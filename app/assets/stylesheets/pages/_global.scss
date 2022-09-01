@@ -1,15 +1,19 @@
 body {
   min-height: 100vh;
   font-family: 'Poppins', sans-serif;
+  padding: 0;
+  //margin match navbar height
+  margin-bottom: 79px;
 }
 
 li p {
   margin-bottom: 0;
 }
+
 .nav {
---bs-nav-link-color: #595959;
---bs-nav-link-hover-color: #0a58ca;
---bs-nav-link-disabled-color: #6c757d;
+  --bs-nav-link-color: #595959;
+  --bs-nav-link-hover-color: #0a58ca;
+  --bs-nav-link-disabled-color: #6c757d;
 }
 
 .nav-tabs {
@@ -23,6 +27,7 @@ li p {
   border-right: 0 !important;
   background-color: transparent !important;
 }
+
 .nav-item button {
   font-size: 9px;
 }
