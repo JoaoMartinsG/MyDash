@@ -19,7 +19,7 @@ class ProblemsController < ApplicationController
     @problem = Problem.new(problem_params)
     @problem.vehicle = @vehicle
     if @problem.save
-      redirect_to vehicle_problems_path(@vehicle)
+      redirect_to vehicle_path(@vehicle)
     else
       render :new, status: :unprocessable_entity
     end
@@ -34,7 +34,14 @@ class ProblemsController < ApplicationController
     @vehicle = Vehicle.find(params[:vehicle_id])
     @problem = Problem.find(params[:id])
     @problem.update(problem_params)
-    redirect_to vehicle_problem_path(@problem)
+    redirect_to vehicle_path(@vehicle)
+  end
+
+  def destroy
+    @vehicle = Vehicle.find(params[:vehicle_id])
+    @problem = Problem.find(params[:id])
+    @problem.destroy
+    redirect_to vehicle_path(@vehicle), status: :see_other
   end
 
   private
