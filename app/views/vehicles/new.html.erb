@@ -1,5 +1,7 @@
+<h1>Add a new vehicle </h1>
+
 <%= simple_form_for @vehicle do |f| %>
-  <%= f.input :type_of_vehicle, as: :radio_buttons, collection: ['Car', 'Motorcycle'] %>
+  <%= f.input :type_of_vehicle, collection: ['Car', 'Motorcycle'] %>
   <%= f.input :make %>
   <%= f.input :model  %>
   <%= f.input :plate  %>

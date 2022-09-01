@@ -19,7 +19,7 @@ class WishlistsController < ApplicationController
     @wishlist = Wishlist.new(wishlist_params)
     @wishlist.vehicle = @vehicle
     if @wishlist.save
-      redirect_to vehicle_wishlists_path(@vehicle)
+      redirect_to vehicle_path(@vehicle)
     else
       render :new, status: :unprocessable_entity
     end
@@ -34,7 +34,14 @@ class WishlistsController < ApplicationController
     @vehicle = Vehicle.find(params[:vehicle_id])
     @wishlist = Wishlist.find(params[:id])
     @wishlist.update(wishlist_params)
-    redirect_to vehicle_wishlist_path(@wishlist)
+    redirect_to vehicle_path(@vehicle)
+  end
+
+  def destroy
+    @vehicle = Vehicle.find(params[:vehicle_id])
+    @wishlist = Wishlist.find(params[:id])
+    @wishlist.destroy
+    redirect_to vehicle_path(@vehicle), status: :see_other
   end
 
   private
