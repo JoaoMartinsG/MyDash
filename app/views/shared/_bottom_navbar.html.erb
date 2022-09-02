@@ -1,22 +1,22 @@
-
-<div class="navbar-bottom d-flex">
-      <div class= "navbar-item">
-       <div>
-          <i class="fa-solid fa-house"></i>
-        </div>
-        <%= link_to "Overview", root_path, class: "Vehicles-navbar-link"%>
-      </div>
-      <div class= "navbar-item">
-        <div>
-          <i class="fa-solid fa-warehouse"></i>
-        </div>
-        <%= link_to "Vehicles", vehicles_path, class:"Vehicles-navbar-link" %>
-      </div>
-      <div class= "navbar-item">
-        <div>
-          <i class="fa-solid fa-user"></i>
-        </div>
-        <%= link_to "Profile",  "#", class:"Vehicles-navbar-link" %>
-      </div>
-
-</div>
+<nav class="navbar-bottom d-flex align-items-center border border-top-1 ">
+  <ul>
+    <%= link_to root_path do %>
+      <li>
+        <i class="fa-solid fa-house"></i>
+        <p>Home</p>
+      </li>
+    <% end %>
+    <%= link_to vehicles_path do %>
+      <li>
+        <i class="fa-solid fa-warehouse"></i>
+        <p>My vehicles</p>
+      </li>
+    <% end %>
+    <%= link_to '#' do %>
+      <li>
+        <i class="fa-solid fa-user"></i>
+        <p>Profile</p>
+      </li>
+    <% end %>
+  </ul>
+</nav>
