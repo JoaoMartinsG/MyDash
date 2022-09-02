@@ -23,17 +23,29 @@
 </div>
 
 
-<div class="tab-content" id="myTabContent">
+<div class="tab-content d-flex justify-content-center mt-4" id="myTabContent">
   <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
-    <p>Number of Maintenance Tasks: <%= @vehicle.maintenances.count %></p>
-    <p>Number of Problems: <%= @vehicle.problems.count %></p>
-    <p>Number of wishlist Items: <%= @vehicle.wishlists.count %></p>
-
-    <p>Money Spent on Maintenance: <%= @vehicle.maintenances.sum(:price).round %>€</p>
-    <p>Money Spent on Problems: <%= @vehicle.problems.sum(:price).round %>€</p>
-    <p>Money Spent on Wishlist items: <%= @vehicle.wishlists.sum(:price).round %>€</p>
-
+    <h2 class="d-flex justify-content-center">Expenses</h2>
+    <div class="small-overview-cards">
+      <%= column_chart @info %>
+    </div>
+      <div class="overview-box">
+        <h3>Overview</h3>
+        <h6>Total Money Spent <strong><%= @info.values.sum %> €</strong></h6>
+        <ul>
+          <li><div>Maintenance Tasks:</div><div><%= @vehicle.maintenances.count %></div></li>
+          <li><div>Problems:</div> <div><%= @vehicle.problems.count %></div></li>
+          <li><div>Wishlist Items:</div> <div><%= @vehicle.wishlists.count %></div></li>
+          <li><div>Spent on Maintenance:</div> <div><%= @vehicle.maintenances.sum(:price).round %>€</div></li>
+          <li><div>Spent on Problems:</div> <div><%= @vehicle.problems.sum(:price).round %>€</div></li>
+          <li><div>Spent on Wishlist items:</div> <div><%= @vehicle.wishlists.sum(:price).round %>€</div></li>
+        </ul>
+    </div>
   </div>
+
+
+
+
   <div class="tab-pane fade" id="maintenance" role="tabpanel" aria-labelledby="maintenance-tab">
     <p>Maintenance</p>
     <div class='mx-3'>
@@ -48,6 +60,7 @@
                 <%= link_to edit_vehicle_maintenance_path(@vehicle, maintenance) do %>
                   <i class="fa-solid fa-pen fa-xs ml-2" data-action="click->display-info#displayForm"></i>
                 <% end %>
+                  <i class="fa-solid fa-chevron-down" data-action="click->display-info#displayForm"></i>
                 <%= link_to vehicle_maintenance_path(@vehicle, maintenance), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
                   <i class="fa-solid fa-trash-can"></i>
                 <% end %>

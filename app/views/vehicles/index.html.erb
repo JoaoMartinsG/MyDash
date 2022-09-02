@@ -1,7 +1,7 @@
 <div class = 'd-flex justify-content-center my-3 border-bottom'>
   <h2>Your Vehicles</h2>
 </div>
-<% @vehicles.each do |vehicle| %>
+<% current_user.vehicles.each do |vehicle| %>
   <div class="col-xs-12 col-md-4 col-offset-4 mx-2">
     <div class="card-product">
       <%= link_to vehicle_path(vehicle) do %>
