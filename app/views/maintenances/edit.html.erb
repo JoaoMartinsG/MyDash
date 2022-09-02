@@ -1,10 +1,18 @@
-<h1>Edit a maintenance task </h1>
+<div class="container mt-5 d-flex justify-content-center">
+  <div class="container-form">
 
-<%= simple_form_for [@vehicle, @maintenance] do |f| %>
-<%= f.input :title %>
-<%= f.input :description %>
-<%= f.input :priority, collection: ['Low', 'Medium', 'High'] %>
-<%= f.input :recorrency %>
-<%= f.input :price %>
-<%= f.submit %>
-<% end %>
+    <h1 class= "form_title">Edit maintenance task </h1>
+
+    <%= simple_form_for [@vehicle, @maintenance] do |f| %>
+    <%= f.input :title %>
+    <%= f.input :description %>
+    <%= f.input :priority, collection: ['Low', 'Medium', 'High'] %>
+    <%= f.input :recorrency %>
+    <%= f.input :price %>
+    <div class="my-3 d-flex justify-content-center">
+    <%= f.submit class: 'btn btn-primary' %>
+    </div>
+    <% end %>
+
+  </div>
+</div>
