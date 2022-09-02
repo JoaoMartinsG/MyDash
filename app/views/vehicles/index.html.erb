@@ -4,9 +4,17 @@
 <% @vehicles.each do |vehicle| %>
   <div class="col-xs-12 col-md-4 col-offset-4 mx-2">
     <div class="card-product">
-      <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+      <%= link_to vehicle_path(vehicle) do %>
+        <% if vehicle.type_of_vehicle == 'Car' %>
+          <img src="https://www.carlogos.org/car-logos/<%= vehicle.make.downcase %>-logo.png" alt="Car Brand Logo" />
+        <% else %>
+            <%= image_tag "brands/#{vehicle.make.downcase}.png" %>
+        <% end %>
+      <% end %>
       <div class="card-product-infos">
-        <h2><%= vehicle.make %> <%= vehicle.model %></h2>
+        <%= link_to vehicle_path(vehicle) do %>
+          <h2><%= vehicle.make %> <%= vehicle.model %></h2>
+        <% end %>
         <p><%= vehicle.plate %></p>
         <p>Driver: <%= vehicle.driver %></p>
         <%= link_to "Edit", edit_vehicle_path(vehicle) %>
@@ -15,8 +23,8 @@
         <% end %>
       </div>
       <div class="card-product-alart mt-5 me-3">
-        <p>3</p>
-        <p>alerts</p>
+        <p> <%= vehicle.problems.count %> </p>
+        <p>Problems</p>
       </div>
     </div>
   </div>
