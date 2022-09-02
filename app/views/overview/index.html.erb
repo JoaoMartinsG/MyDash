@@ -1,9 +1,21 @@
-<h1>Overview</h1>
-
-<%= @vehicles.count %>
-<%= @maintenances.count %>
-<%= @problems.count %>
-<%= @wishlists.count %>
-
-
-
+<div class = "">
+  <div class = "text-center mt-3 border-bottom">
+    <h1>Overview</h1>
+  </div>
+  <div class = "my-3 py-3 d-flex align-items-center justify-content-center">
+    <h3>Number of vehicles: <%= current_user.vehicles.count %></h3>
+  </div>
+  <div>
+    <% @sum_maintenances = 0 %>
+    <% @sum_problems = 0 %>
+    <% @sum_wishlist = 0 %>
+    <% current_user.vehicles.each do |vehicle|  %>
+      <% @sum_maintenances += vehicle.maintenances.sum(:price) %>
+      <% @sum_problems += vehicle.problems.sum(:price) %>
+      <% @sum_wishlist += vehicle.wishlists.sum(:price) %>
+    <% end %>
+    <p>Total spent on Maintenances: <%= @sum_maintenances %> €</p>
+    <p>Total spent on Problems: <%= @sum_problems %> €</p>
+    <p>Total spent on Wishlist Items: <%= @sum_wishlist %> €</p>
+  </div>
+</div>
