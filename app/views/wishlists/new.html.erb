@@ -1,10 +1,17 @@
-<h1>Add a new Item to your Wishlist</h1>
+<div class="container mt-5 d-flex justify-content-center">
+  <div class="container-form">
 
-<%= simple_form_for [@vehicle, @wishlist] do |f| %>
-<%= f.input :name %>
-<%= f.input :url %>
-<%= f.input :price %>
-<%= f.submit %>
-<% end %>
-<br>
-<%= link_to "Back", vehicle_wishlists_path(@vehicle) %>
+    <h1 class="form_title">New Wishlist Item</h1>
+
+    <%= simple_form_for [@vehicle, @wishlist] do |f| %>
+    <%= f.input :name, placeholder: "New rims"  %>
+    <%= f.input :url, placeholder: "https://www.amazon.com"%>
+    <%= f.input :price %>
+    <div class="my-3 d-flex justify-content-center">
+      <%= f.submit class: 'btn btn-primary' %>
+    </div>
+    <% end %>
+    <br>
+    <%= link_to "Back", vehicle_wishlists_path(@vehicle) %>
+  </div>
+</div>
