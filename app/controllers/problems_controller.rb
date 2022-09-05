@@ -44,6 +44,16 @@ class ProblemsController < ApplicationController
     redirect_to vehicle_path(@vehicle), status: :see_other
   end
 
+  def done
+    @vehicle = Vehicle.find(params[:vehicle_id])
+    @problem = Problem.find(params[:id])
+    @problem.status = true
+    @problem.done_date = Date.new
+    @problem.save!
+
+    redirect_to vehicle_path(@vehicle), status: :see_other
+  end
+
   private
 
   def problem_params

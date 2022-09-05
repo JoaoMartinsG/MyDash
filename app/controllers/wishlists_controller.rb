@@ -44,6 +44,16 @@ class WishlistsController < ApplicationController
     redirect_to vehicle_path(@vehicle), status: :see_other
   end
 
+  def done
+    @vehicle = Vehicle.find(params[:vehicle_id])
+    @wishlist = Wishlist.find(params[:id])
+    @wishlist.status = true
+    @wishlist.done_date = Date.new
+    @wishlist.save!
+
+    redirect_to vehicle_path(@vehicle), status: :see_other
+  end
+
   private
 
   def wishlist_params
