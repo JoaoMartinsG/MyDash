@@ -77,22 +77,36 @@
       <div class='mt-3 text-center'>
         <h2 class= "heading" >Your Problems</h2>
       </div>
-      <ul class="list-group">
+
         <% @vehicle.problems.each do |problem| %>
-          <li class="list-group-item d-flex justify-content-between">
-            <p><%= problem.title %>&nbsp;</p>
-            <p><small><%= problem.price %>EUR&nbsp;</small></p>
-            <%= link_to edit_vehicle_problem_path(@vehicle, problem) do %>
-                  <i class="fa-solid fa-pen fa-xs ml-2" data-action="click->display-info#displayForm"></i>
-                <% end %>
-                <%= link_to vehicle_problem_path(@vehicle, problem), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
-                  <i class="fa-solid fa-trash-can"></i>
-                <% end %>
-            <p><i class="fa-solid fa-ellipsis"></i> <i class="fa-solid fa-chevron-down"></i></p>
-          </li>
+        <div>
+          <div class="problem_card">
+              <div class="title-price">
+              <h3><%= problem.title %></h3><h4><%= problem.price %> EUR</h4>
+              </div>
+              <p><%= problem.description %></p>
+              <p class="priority">Priority: <%= problem.priority %></p>
+
+              <div class="problem_icons">
+                <div class="mx-4">
+                  <%= link_to edit_vehicle_problem_path(@vehicle, problem) do %>
+                    <i class="fa-solid fa-pen fa-xs ml-2" data-action="click->display-info#displayForm"></i>
+                  <% end %>
+                </div>
+                <div>
+                  <%= link_to vehicle_problem_path(@vehicle, problem), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
+                    <i class="fa-solid fa-trash-can"></i>
+                  <% end %>
+                </div>
+              </div>
+          </div>
+        </div>
         <% end %>
-      </ul>
-      <%= link_to "Add", new_vehicle_problem_path(@vehicle), class: "AddButton btn btn-success" %>
+        <div class="plus-card">
+          <%= link_to new_vehicle_problem_path(@vehicle) do %>
+          <i class="fa-solid fa-circle-plus"></i>
+          <% end %>
+        </div>
     </div>
   </div>
   <div class="tab-pane fade" id="wishlist" role="tabpanel" aria-labelledby="wishlist-tab">
