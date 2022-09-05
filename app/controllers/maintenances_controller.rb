@@ -48,14 +48,13 @@ class MaintenancesController < ApplicationController
     @vehicle = Vehicle.find(params[:vehicle_id])
     @maintenance = Maintenance.find(params[:id])
     if @maintenance.repeat?
-      @maintenance.status = true
       new_maintenance = @maintenance.dup
       new_maintenance.save!
-      @maintenance.done_date = Date.new
-    else
-      @maintenance.status = true
-      @maintenance.done_date = Date.new
     end
+    @maintenance.status = true
+    @maintenance.done_date = Date.new
+    @maintenance.save!
+
     redirect_to vehicle_path(@vehicle), status: :see_other
   end
 
