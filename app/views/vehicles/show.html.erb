@@ -47,16 +47,15 @@
 
 
   <div class="tab-pane fade" id="maintenance" role="tabpanel" aria-labelledby="maintenance-tab">
-    <p>Maintenance</p>
     <div class='mx-3'>
       <div class='mt-3 text-center'>
-        <p><strong>Your Maintenance Tasks:</strong></p>
+        <h2 class = "heading">Your Maintenance Tasks</h2>
       </div>
       <ul class="list-group">
         <% @vehicle.maintenances.each do |maintenance| %>
           <li class="list-group-item d-flex justify-content-between" data-controller = "display-info">
             <div class="wishlist-infos" data-display-info-target="infos">
-              <h2><%= maintenance.title %> <small><%= maintenance.price %></small></h2>
+              <p><%= maintenance.title %> <small><%= maintenance.price%>EUR&nbsp;</small></p>
                 <%= link_to edit_vehicle_maintenance_path(@vehicle, maintenance) do %>
                   <i class="fa-solid fa-pen fa-xs ml-2" data-action="click->display-info#displayForm"></i>
                 <% end %>
@@ -70,21 +69,19 @@
           </li>
         <% end %>
       </ul>
-      <%= link_to "Back", vehicles_path, class: "btn btn-primary" %>
-      <%= link_to "Add", new_vehicle_maintenance_path(@vehicle), class: "btn btn-success" %>
+      <%= link_to "Add", new_vehicle_maintenance_path(@vehicle), class: "AddButton btn btn-success" %>
     </div>
   </div>
   <div class="tab-pane fade" id="problems" role="tabpanel" aria-labelledby="problems-tab">
-    <p>Problems</p>
     <div class='mx-3'>
       <div class='mt-3 text-center'>
-        <p><strong>Your Problems</strong></p>
+        <h2 class= "heading" >Your Problems</h2>
       </div>
       <ul class="list-group">
         <% @vehicle.problems.each do |problem| %>
           <li class="list-group-item d-flex justify-content-between">
             <p><%= problem.title %>&nbsp;</p>
-            <p><%= problem.price %>EUR&nbsp;</p>
+            <p><small><%= problem.price %>EUR&nbsp;</small></p>
             <%= link_to edit_vehicle_problem_path(@vehicle, problem) do %>
                   <i class="fa-solid fa-pen fa-xs ml-2" data-action="click->display-info#displayForm"></i>
                 <% end %>
@@ -95,20 +92,19 @@
           </li>
         <% end %>
       </ul>
-      <%= link_to "Back", vehicles_path, class: "btn btn-primary" %>
-      <%= link_to "Add", new_vehicle_problem_path(@vehicle), class: "btn btn-success" %>
+      <%= link_to "Add", new_vehicle_problem_path(@vehicle), class: "AddButton btn btn-success" %>
     </div>
   </div>
   <div class="tab-pane fade" id="wishlist" role="tabpanel" aria-labelledby="wishlist-tab">
     <div class='mx-3'>
       <div class='mt-3 text-center'>
-        <p><strong>Your Wishlist</strong></p>
+        <h2 class="heading">Your Wishlist</h2>
       </div>
       <ul class="list-group">
         <% @vehicle.wishlists.each do |wishlist| %>
           <li class="list-group-item d-flex justify-content-between">
             <p><%= wishlist.name %>&nbsp;</p>
-            <p><%= wishlist.price %>EUR&nbsp;</p>
+            <p><small><%= wishlist.price %>EUR&nbsp;</small></p>
             <%= link_to edit_vehicle_wishlist_path(@vehicle, wishlist) do %>
                   <i class="fa-solid fa-pen fa-xs ml-2" data-action="click->display-info#displayForm"></i>
                 <% end %>
@@ -120,7 +116,6 @@
 
         <% end %>
       </ul>
-      <%= link_to "Back", vehicles_path, class: "btn btn-primary" %>
-      <%= link_to "Add", new_vehicle_wishlist_path(@vehicle), class: "btn btn-success" %>
+      <%= link_to "Add", new_vehicle_wishlist_path(@vehicle), class: "AddButton btn btn-success" %>
     </div>
   </div>
