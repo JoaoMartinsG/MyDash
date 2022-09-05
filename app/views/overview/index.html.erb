@@ -7,13 +7,23 @@
   </div>
   <div>
     <% @sum_maintenances = 0 %>
+    <% @sum_undone_maintenances = 0 %>
     <% @sum_problems = 0 %>
+    <% @sum_undone_problems = 0 %>
     <% @sum_wishlist = 0 %>
+    <% @sum_undone_wishlist = 0 %>
     <% current_user.vehicles.each do |vehicle|  %>
-      <% @sum_maintenances += vehicle.maintenances.sum(:price) %>
-      <% @sum_problems += vehicle.problems.sum(:price) %>
-      <% @sum_wishlist += vehicle.wishlists.sum(:price) %>
+      <% @sum_maintenances += vehicle.maintenances.where(status: true).sum(:price) %>
+      <% @sum_undone_maintenances += vehicle.maintenances.where(status: false).sum(:price) %>
+      <% @sum_problems += vehicle.problems.where(status: true).sum(:price) %>
+      <% @sum_undone_problems += vehicle.problems.where(status: false).sum(:price) %>
+      <% @sum_wishlist += vehicle.wishlists.where(status: true).sum(:price) %>
+      <% @sum_undone_wishlist += vehicle.wishlists.where(status: false).sum(:price) %>
     <% end %>
+    <p><%= Maintenance.count %></p>
+    <p>Total needed to spend on Maintenances: <%= @sum_undone_maintenances %> €</p>
+    <p>Total needed to spent on Problems: <%= @sum_undone_problems %> €</p>
+    <p>Total needed to spent on Wishlist Items: <%= @sum_undone_wishlist %> €</p>
     <p>Total spent on Maintenances: <%= @sum_maintenances %> €</p>
     <p>Total spent on Problems: <%= @sum_problems %> €</p>
     <p>Total spent on Wishlist Items: <%= @sum_wishlist %> €</p>

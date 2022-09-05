@@ -65,6 +65,7 @@
                 <%= maintenance.description %> <br>
                 Priority: <%= maintenance.priority %> <br>
                 Price: <%= maintenance.price.round %>€ <br>
+                Status: <%= maintenance.status %>
                 <% if maintenance.repeat? %>
                   Repeat: Yes <br>
                 <% else %>
@@ -72,13 +73,13 @@
                 <% end %>
                 Controls: <br>
                 <%= link_to edit_vehicle_maintenance_path(@vehicle, maintenance) do %>
-                  <i class="fa-solid fa-pen fa-xs ml-2"></i>
-                <% end %>
-                <%= link_to done_vehicle_maintenance_path(@vehicle, maintenance), data: { turbo_method: :patch, turbo_confirm: "Is this task done?" } do %>
-                  <i class="fa-solid fa-check"></i>
+                Edit <i class="fa-solid fa-pen fa-xs ml-2"></i>
                 <% end %>
                 <%= link_to vehicle_maintenance_path(@vehicle, maintenance), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
-                  <i class="fa-solid fa-trash-can"></i>
+                Delete <i class="fa-solid fa-trash-can"></i>
+                <% end %>
+                <%= link_to done_vehicle_maintenance_path(@vehicle, maintenance), data: { turbo_method: :patch, turbo_confirm: "Is this task done?" } do %>
+                Mark done <i class="fa-solid fa-check"></i>
                 <% end %>
               </p>
             </div>
@@ -99,6 +100,7 @@
               <p class="d-none" data-display-info-target="form">
                 <%= maintenance.description %> <br>
                 Price: <%= maintenance.price.round %>€ <br>
+                Done at: <%= maintenance.done_date %>€ <br>
                 <%= link_to "Delete", vehicle_maintenance_path(@vehicle, maintenance), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: 'btn btn-warning btn-sm mt-3gst' %>
               </p>
             </div>
@@ -107,17 +109,42 @@
         <% end %>
       </ul>
       <%= link_to "Add", new_vehicle_maintenance_path(@vehicle), class: "btn btn-primary mt-3 w-100" %>
-
     </div>
   </div>
-  <div class="tab-pane fade" id="problems" role="tabpanel" aria-labelledby="problems-tab">
-    <p>Problems</p>
+
+<%# ------------------------------------------------- Problems Tab -------------------------------------------------------------------- %>
+
+  <div class="tab-pane fade w-100" id="problems" role="tabpanel" aria-labelledby="problems-tab" data-controller="toggle-switch">
     <div class='mx-3'>
       <div class='mt-3 text-center'>
         <p><strong>Your Problems</strong></p>
       </div>
-      <ul class="list-group">
-        <% @vehicle.problems.each do |problem| %>
+      <div class="form-check form-switch  w-100 align-items-start" >
+        <label class="form-check-label mb-3" for="flexSwitchCheckDefault">To do :</label>
+        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" data-action="click->toggle-switch#toggle">
+      </div>
+
+      <ul class="list-group" data-toggle-switch-target="list">
+        <% @vehicle.problems.where(status: false).each do |problem| %>
+          <li class="list-group-item d-flex justify-content-between">
+            <p><%= problem.title %>&nbsp;</p>
+            <p><%= problem.price %>EUR&nbsp;</p>
+            <%= link_to edit_vehicle_problem_path(@vehicle, problem) do %>
+              <i class="fa-solid fa-pen fa-xs ml-2" data-action="click->display-info#displayForm"></i>
+            <% end %>
+            <%= link_to vehicle_problem_path(@vehicle, problem), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
+              <i class="fa-solid fa-trash-can"></i>
+            <% end %>
+            <p><i class="fa-solid fa-ellipsis"></i> <i class="fa-solid fa-chevron-down"></i></p>
+          </li>
+        <% end %>
+      </ul>
+
+<%# ---------------------------------------------- COMPLETED PROBLEMS ----------------------------------------------------------------- %>
+
+<ul class="list-group d-none" data-toggle-switch-target="list">
+      <h1>complete</h1>
+        <% @vehicle.problems.where(status: true).each do |problem| %>
           <li class="list-group-item d-flex justify-content-between">
             <p><%= problem.title %>&nbsp;</p>
             <p><%= problem.price %>EUR&nbsp;</p>
@@ -131,17 +158,23 @@
           </li>
         <% end %>
       </ul>
-      <%= link_to "Back", vehicles_path, class: "btn btn-primary" %>
-      <%= link_to "Add", new_vehicle_problem_path(@vehicle), class: "btn btn-success" %>
+      <%= link_to "Add", new_vehicle_problem_path(@vehicle), class: "btn btn-primary mt-3 w-100" %>
     </div>
   </div>
-  <div class="tab-pane fade" id="wishlist" role="tabpanel" aria-labelledby="wishlist-tab">
+
+<%# ------------------------------------------------- Wishlist Tab -------------------------------------------------------------------- %>
+
+  <div class="tab-pane fade w-100" id="wishlist" role="tabpanel" aria-labelledby="wishlist-tab" data-controller="toggle-switch">
     <div class='mx-3'>
       <div class='mt-3 text-center'>
         <p><strong>Your Wishlist</strong></p>
       </div>
-      <ul class="list-group">
-        <% @vehicle.wishlists.each do |wishlist| %>
+      <div class="form-check form-switch w-100 align-items-start" >
+        <label class="form-check-label mb-3" for="flexSwitchCheckDefault">To do :</label>
+        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" data-action="click->toggle-switch#toggle">
+      </div>
+      <ul class="list-group" data-toggle-switch-target="list">
+        <% @vehicle.wishlists.where(status: false).each do |wishlist| %>
           <li class="list-group-item d-flex justify-content-between">
             <p><%= wishlist.name %>&nbsp;</p>
             <p><%= wishlist.price %>EUR&nbsp;</p>
@@ -153,10 +186,28 @@
                 <% end %>
             <p><i class="fa-solid fa-ellipsis"></i> <i class="fa-solid fa-chevron-down"></i></p>
           </li>
-
         <% end %>
       </ul>
-      <%= link_to "Back", vehicles_path, class: "btn btn-primary" %>
-      <%= link_to "Add", new_vehicle_wishlist_path(@vehicle), class: "btn btn-success" %>
+
+
+<%# ---------------------------------------------- Bought Items ----------------------------------------------------------------- %>
+
+<ul class="list-group d-none" data-toggle-switch-target="list">
+        <h3>Bought Items: </h3>
+        <% @vehicle.wishlists.where(status: true).each do |wishlist| %>
+          <li class="list-group-item d-flex justify-content-between">
+            <p><%= wishlist.name %>&nbsp;</p>
+            <p><%= wishlist.price %>EUR&nbsp;</p>
+            <%= link_to edit_vehicle_wishlist_path(@vehicle, wishlist) do %>
+                  <i class="fa-solid fa-pen fa-xs ml-2" data-action="click->display-info#displayForm"></i>
+                <% end %>
+                <%= link_to vehicle_wishlist_path(@vehicle, wishlist), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
+                  <i class="fa-solid fa-trash-can"></i>
+                <% end %>
+            <p><i class="fa-solid fa-ellipsis"></i> <i class="fa-solid fa-chevron-down"></i></p>
+          </li>
+        <% end %>
+      </ul>
+      <%= link_to "Add", new_vehicle_wishlist_path(@vehicle), class: "btn btn-primary mt-3 w-100" %>
     </div>
   </div>
