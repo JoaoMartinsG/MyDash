@@ -43,45 +43,63 @@
     </div>
   </div>
 
+<%# ------------------------------------------------- Maintenance Tab -------------------------------------------------------------------- %>
 
-
-
-  <div class="tab-pane fade" id="maintenance" role="tabpanel" aria-labelledby="maintenance-tab">
+  <div class="tab-pane fade w-100" id="maintenance" role="tabpanel" aria-labelledby="maintenance-tab">
     <div class='mx-3'>
       <div class='mt-3 text-center'>
-        <h2 class = "heading">Your Maintenance Tasks</h2>
+        <p><strong>Your Maintenance Tasks:</strong></p>
+      </div>
+      <div class="form-check form-switch">
+        <label class="form-check-label mb-3" for="flexSwitchCheckDefault">To do Tasks: </label>
+        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
       </div>
       <ul class="list-group">
         <% @vehicle.maintenances.each do |maintenance| %>
           <li class="list-group-item d-flex justify-content-between" data-controller = "display-info">
             <div class="wishlist-infos" data-display-info-target="infos">
-              <p><%= maintenance.title %> <small><%= maintenance.price%>EUR&nbsp;</small></p>
-                <%= link_to edit_vehicle_maintenance_path(@vehicle, maintenance) do %>
-                  <i class="fa-solid fa-pen fa-xs ml-2" data-action="click->display-info#displayForm"></i>
+              <h2 class='m-0'><%= maintenance.title %></h2>
+
+              <p class="d-none" data-display-info-target="form">
+                <%= maintenance.description %> <br>
+                Priority: <%= maintenance.priority %> <br>
+                Price: <%= maintenance.price.round %>€ <br>
+                <% if maintenance.repeat? %>
+                  Repeat: Yes <br>
+                <% else %>
+                  Repeat: No <br>
                 <% end %>
-                  <i class="fa-solid fa-chevron-down" data-action="click->display-info#displayForm"></i>
+                Controls: <br>
+                <%= link_to edit_vehicle_maintenance_path(@vehicle, maintenance) do %>
+                  <i class="fa-solid fa-pen fa-xs ml-2"></i>
+                <% end %>
+                <%= link_to done_vehicle_maintenance_path(@vehicle, maintenance), data: { turbo_method: :delete, turbo_confirm: "Is this task done?" } do %>
+                  <i class="fa-solid fa-check"></i>
+                <% end %>
                 <%= link_to vehicle_maintenance_path(@vehicle, maintenance), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
                   <i class="fa-solid fa-trash-can"></i>
                 <% end %>
-              <p class="d-none" data-display-info-target="form">test</p>
+              </p>
             </div>
-            <div><i class="fa-solid fa-ellipsis"></i></div>
+            <i class="fa-solid fa-chevron-down" data-action="click->display-info#displayForm"></i>
           </li>
         <% end %>
       </ul>
-      <%= link_to "Add", new_vehicle_maintenance_path(@vehicle), class: "AddButton btn btn-success" %>
+      <%= link_to "Back", vehicles_path, class: "btn btn-primary" %>
+      <%= link_to "Add", new_vehicle_maintenance_path(@vehicle), class: "btn btn-success" %>
     </div>
   </div>
   <div class="tab-pane fade" id="problems" role="tabpanel" aria-labelledby="problems-tab">
+    <p>Problems</p>
     <div class='mx-3'>
       <div class='mt-3 text-center'>
-        <h2 class= "heading" >Your Problems</h2>
+        <p><strong>Your Problems</strong></p>
       </div>
       <ul class="list-group">
         <% @vehicle.problems.each do |problem| %>
           <li class="list-group-item d-flex justify-content-between">
             <p><%= problem.title %>&nbsp;</p>
-            <p><small><%= problem.price %>EUR&nbsp;</small></p>
+            <p><%= problem.price %>EUR&nbsp;</p>
             <%= link_to edit_vehicle_problem_path(@vehicle, problem) do %>
                   <i class="fa-solid fa-pen fa-xs ml-2" data-action="click->display-info#displayForm"></i>
                 <% end %>
@@ -92,19 +110,20 @@
           </li>
         <% end %>
       </ul>
-      <%= link_to "Add", new_vehicle_problem_path(@vehicle), class: "AddButton btn btn-success" %>
+      <%= link_to "Back", vehicles_path, class: "btn btn-primary" %>
+      <%= link_to "Add", new_vehicle_problem_path(@vehicle), class: "btn btn-success" %>
     </div>
   </div>
   <div class="tab-pane fade" id="wishlist" role="tabpanel" aria-labelledby="wishlist-tab">
     <div class='mx-3'>
       <div class='mt-3 text-center'>
-        <h2 class="heading">Your Wishlist</h2>
+        <p><strong>Your Wishlist</strong></p>
       </div>
       <ul class="list-group">
         <% @vehicle.wishlists.each do |wishlist| %>
           <li class="list-group-item d-flex justify-content-between">
             <p><%= wishlist.name %>&nbsp;</p>
-            <p><small><%= wishlist.price %>EUR&nbsp;</small></p>
+            <p><%= wishlist.price %>EUR&nbsp;</p>
             <%= link_to edit_vehicle_wishlist_path(@vehicle, wishlist) do %>
                   <i class="fa-solid fa-pen fa-xs ml-2" data-action="click->display-info#displayForm"></i>
                 <% end %>
@@ -116,6 +135,7 @@
 
         <% end %>
       </ul>
-      <%= link_to "Add", new_vehicle_wishlist_path(@vehicle), class: "AddButton btn btn-success" %>
+      <%= link_to "Back", vehicles_path, class: "btn btn-primary" %>
+      <%= link_to "Add", new_vehicle_wishlist_path(@vehicle), class: "btn btn-success" %>
     </div>
   </div>
