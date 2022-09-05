@@ -117,7 +117,7 @@
   <div class="tab-pane fade w-100" id="problems" role="tabpanel" aria-labelledby="problems-tab" data-controller="toggle-switch">
     <div class='mx-3'>
       <div class='mt-3 text-center'>
-        <p><strong>Your Problems</strong></p>
+        <p><strong>Vehicle Problems</strong></p>
       </div>
       <div class="form-check form-switch  w-100 align-items-start" >
         <label class="form-check-label mb-3" for="flexSwitchCheckDefault">To do :</label>
@@ -126,16 +126,31 @@
 
       <ul class="list-group" data-toggle-switch-target="list">
         <% @vehicle.problems.where(status: false).each do |problem| %>
-          <li class="list-group-item d-flex justify-content-between">
-            <p><%= problem.title %>&nbsp;</p>
-            <p><%= problem.price %>EUR&nbsp;</p>
-            <%= link_to edit_vehicle_problem_path(@vehicle, problem) do %>
-              <i class="fa-solid fa-pen fa-xs ml-2" data-action="click->display-info#displayForm"></i>
-            <% end %>
-            <%= link_to vehicle_problem_path(@vehicle, problem), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
-              <i class="fa-solid fa-trash-can"></i>
-            <% end %>
-            <p><i class="fa-solid fa-ellipsis"></i> <i class="fa-solid fa-chevron-down"></i></p>
+          <li class="problem_card">
+            <div class="title-price">
+              <% if problem.priority == "High" %>
+              <h3><i class="fa-solid fa-circle" style="color:#FF4633;"></i> <%= problem.title %></h3><h4><%= problem.price %> EUR</h4>
+              <% elsif problem.priority == "Medium"  %>
+              <h3><i class="fa-solid fa-circle" style="color:#FFB233;"></i> <%= problem.title %></h3><h4><%= problem.price %> EUR</h4>
+              <% else %>
+              <h3><i class="fa-solid fa-circle" style="color:#F4F13B;"></i> <%= problem.title %></h3><h4><%= problem.price %> EUR</h4>
+              <% end %>
+            </div>
+            <p><%= problem.description %></p>
+            <p class="priority">Priority: <%= problem.priority %></p>
+
+            <div class="problem_icons">
+                <div class="mx-4">
+                  <%= link_to edit_vehicle_problem_path(@vehicle, problem) do %>
+                    <i class="fa-solid fa-pen fa-xs ml-2" data-action="click->display-info#displayForm"></i>
+                  <% end %>
+                </div>
+                <div>
+                  <%= link_to vehicle_problem_path(@vehicle, problem), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
+                    <i class="fa-solid fa-trash-can"></i>
+                  <% end %>
+                </div>
+              </div>
           </li>
         <% end %>
       </ul>
@@ -143,22 +158,41 @@
 <%# ---------------------------------------------- COMPLETED PROBLEMS ----------------------------------------------------------------- %>
 
 <ul class="list-group d-none" data-toggle-switch-target="list">
-      <h1>complete</h1>
+      <h4 style="font-size: 16px; font-weight: bold" >Problems Solved</h4>
         <% @vehicle.problems.where(status: true).each do |problem| %>
-          <li class="list-group-item d-flex justify-content-between">
-            <p><%= problem.title %>&nbsp;</p>
-            <p><%= problem.price %>EUR&nbsp;</p>
-            <%= link_to edit_vehicle_problem_path(@vehicle, problem) do %>
-                  <i class="fa-solid fa-pen fa-xs ml-2" data-action="click->display-info#displayForm"></i>
-                <% end %>
-                <%= link_to vehicle_problem_path(@vehicle, problem), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
-                  <i class="fa-solid fa-trash-can"></i>
-                <% end %>
-            <p><i class="fa-solid fa-ellipsis"></i> <i class="fa-solid fa-chevron-down"></i></p>
+          <li class="problem_card">
+            <div class="title-price">
+              <% if problem.priority == "High" %>
+              <h3><i class="fa-solid fa-circle" style="color:#FF4633;"></i> <%= problem.title %></h3><h4><%= problem.price %> EUR</h4>
+              <% elsif problem.priority == "Medium"  %>
+              <h3><i class="fa-solid fa-circle" style="color:#FFB233;"></i> <%= problem.title %></h3><h4><%= problem.price %> EUR</h4>
+              <% else %>
+              <h3><i class="fa-solid fa-circle" style="color:#F4F13B;"></i> <%= problem.title %></h3><h4><%= problem.price %> EUR</h4>
+              <% end %>
+            </div>
+            <p><%= problem.description %></p>
+            <p class="priority">Priority: <%= problem.priority %></p>
+
+            <div class="problem_icons">
+                <div class="mx-4">
+                  <%= link_to edit_vehicle_problem_path(@vehicle, problem) do %>
+                    <i class="fa-solid fa-pen fa-xs ml-2" data-action="click->display-info#displayForm"></i>
+                  <% end %>
+                </div>
+                <div>
+                  <%= link_to vehicle_problem_path(@vehicle, problem), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
+                    <i class="fa-solid fa-trash-can"></i>
+                  <% end %>
+                </div>
+              </div>
           </li>
         <% end %>
       </ul>
-      <%= link_to "Add", new_vehicle_problem_path(@vehicle), class: "btn btn-primary mt-3 w-100" %>
+        <div class="plus-card">
+            <%= link_to new_vehicle_problem_path(@vehicle) do %>
+            <i class="fa-solid fa-circle-plus"></i>
+            <% end %>
+        </div>
     </div>
   </div>
 
