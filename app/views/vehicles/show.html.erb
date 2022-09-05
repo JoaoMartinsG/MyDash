@@ -187,7 +187,7 @@
                   <%= link_to vehicle_wishlist_path(@vehicle, wishlist), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
                   Delete <i class="fa-solid fa-trash-can"></i>
                   <% end %>
-                  <%= link_to done_vehicle_wishlistga._path(@vehicle, wishlist), data: { turbo_method: :patch, turbo_confirm: "Has this item been bought?" } do %>
+                  <%= link_to done_vehicle_wishlist_path(@vehicle, wishlist), data: { turbo_method: :patch, turbo_confirm: "Has this item been bought?" } do %>
                   Bought <i class="fa-solid fa-check"></i>
                   <% end %>
                 </p>
