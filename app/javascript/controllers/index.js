@@ -9,3 +9,6 @@ application.register("display-info", DisplayInfoController)
 
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
+
+import ToggleSwitchController from "./toggle_switch_controller"
+application.register("toggle-switch", ToggleSwitchController)
