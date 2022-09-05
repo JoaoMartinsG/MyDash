@@ -44,9 +44,24 @@ class MaintenancesController < ApplicationController
     redirect_to vehicle_path(@vehicle), status: :see_other
   end
 
+  def done
+    @vehicle = Vehicle.find(params[:vehicle_id])
+    @maintenance = Maintenance.find(params[:id])
+    if @maintenance.repeat?
+      @maintenance.status = true
+      new_maintenance = @maintenance.dup
+      new_maintenance.save!
+      @maintenance.done_date = Date.new
+    else
+      @maintenance.status = true
+      @maintenance.done_date = Date.new
+    end
+    redirect_to vehicle_path(@vehicle), status: :see_other
+  end
+
   private
 
   def maintenance_params
-    params.require(:maintenance).permit(:title, :description, :priority, :recorrency, :price, :status)
+    params.require(:maintenance).permit(:title, :description, :priority, :repeat, :price, :status)
   end
 end

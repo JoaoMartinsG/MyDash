@@ -6,7 +6,8 @@ class VehiclesController < ApplicationController
   def show
     @vehicle = Vehicle.find(params[:id])
 
-    @info = {
+    @info =
+      {
         "Maintenances" => @vehicle.maintenances.sum(:price),
         "Problems" => @vehicle.problems.sum(:price),
         "Wishlist" => @vehicle.wishlists.sum(:price)
