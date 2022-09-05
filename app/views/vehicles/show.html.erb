@@ -82,7 +82,13 @@
         <div>
           <div class="problem_card">
               <div class="title-price">
-              <h3><%= problem.title %></h3><h4><%= problem.price %> EUR</h4>
+              <% if problem.priority == "High" %>
+              <h3><i class="fa-solid fa-circle" style="color:#FF4633;"></i> <%= problem.title %></h3><h4><%= problem.price %> EUR</h4>
+              <% elsif problem.priority == "Medium"  %>
+              <h3><i class="fa-solid fa-circle" style="color:#FFB233;"></i> <%= problem.title %></h3><h4><%= problem.price %> EUR</h4>
+              <% else %>
+              <h3><i class="fa-solid fa-circle" style="color:#F4F13B;"></i> <%= problem.title %></h3><h4><%= problem.price %> EUR</h4>
+              <% end %>
               </div>
               <p><%= problem.description %></p>
               <p class="priority">Priority: <%= problem.priority %></p>
