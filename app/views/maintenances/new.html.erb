@@ -3,7 +3,9 @@
     <h1 class="form_title">New Maintenance  </h1>
 
     <%= simple_form_for [@vehicle, @maintenance] do |f| %>
-    <%= f.input :title, placeholder: "Oil Change" %>
+    <div class="TitleInput">
+      <%= f.input :title, placeholder: "Oil Change" %>
+    </div>
     <%= f.input :description, placeholder: "Regular oil change " %>
     <%= f.input :priority, collection: ['Low', 'Medium', 'High'] %>
     <%= f.input :repeat %>
