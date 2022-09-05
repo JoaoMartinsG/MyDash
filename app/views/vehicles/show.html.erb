@@ -175,16 +175,24 @@
       </div>
       <ul class="list-group" data-toggle-switch-target="list">
         <% @vehicle.wishlists.where(status: false).each do |wishlist| %>
-          <li class="list-group-item d-flex justify-content-between">
-            <p><%= wishlist.name %>&nbsp;</p>
-            <p><%= wishlist.price %>EUR&nbsp;</p>
-            <%= link_to edit_vehicle_wishlist_path(@vehicle, wishlist) do %>
-                  <i class="fa-solid fa-pen fa-xs ml-2" data-action="click->display-info#displayForm"></i>
-                <% end %>
-                <%= link_to vehicle_wishlist_path(@vehicle, wishlist), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
-                  <i class="fa-solid fa-trash-can"></i>
-                <% end %>
-            <p><i class="fa-solid fa-ellipsis"></i> <i class="fa-solid fa-chevron-down"></i></p>
+          <li class="list-group-item d-flex justify-content-between" data-controller = "display-info">
+          <div class="wishlist-infos" data-display-info-target="infos">
+            <h4><%= wishlist.name %>&nbsp;<%= wishlist.price %>EUR&nbsp;</h4>
+              <p class="d-none " data-display-info-target="form">
+                  <br>Store Page: <%= wishlist.url %>
+                  Controls: <br>
+                  <%= link_to edit_vehicle_wishlist_path(@vehicle, wishlist) do %>
+                  Edit <i class="fa-solid fa-pen fa-xs ml-2"></i>
+                  <% end %>
+                  <%= link_to vehicle_wishlist_path(@vehicle, wishlist), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
+                  Delete <i class="fa-solid fa-trash-can"></i>
+                  <% end %>
+                  <%= link_to done_vehicle_wishlistga._path(@vehicle, wishlist), data: { turbo_method: :patch, turbo_confirm: "Has this item been bought?" } do %>
+                  Bought <i class="fa-solid fa-check"></i>
+                  <% end %>
+                </p>
+          </div>
+            <p><i class="fa-solid fa-chevron-down" data-action="click->display-info#displayForm"></i></p>
           </li>
         <% end %>
       </ul>
