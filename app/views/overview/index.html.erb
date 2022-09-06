@@ -1,4 +1,4 @@
-<div class = "overview-header">
+<div class = "overview-header text-center">
   <%= image_tag "logos/MyDashLogo1.png", id:"logo-overview" %>
   <div class="welcome">
   <p>Welcome</p>
@@ -8,18 +8,18 @@
   <div class = "container">
     <div class = "boxes d-flex justify-content-evenly text-center">
         <div class="box1">
-          <p style="font-size: 16px; margin-top: 7px; margin-bottom: 13px">You have</p>
-          <p style="font-size: 25px; margin-top: 7px; margin-bottom: 13px; color: #5BC0BE"><strong><%= current_user.vehicles.count %></strong></p>
+          <p style="font-size: 25px; margin-top: 9px; margin-bottom: 0px; color: #5BC0BE"><strong><%= current_user.vehicles.count %></strong></p>
+          <p style="font-size: 16px; margin-top: 0px; margin-bottom: 5px">Registered</p>
           <p style="font-size: 16px; margin-top: -7px; margin-bottom: 13px">Vehicles</p>
         </div>
         <div class="box2">
-          <p style="font-size: 16px; margin-top: 7px; margin-bottom: 13px">Undone</p>
-          <p style="font-size: 25px; margin-top: 7px; margin-bottom: 13px; color: #5BC0BE"><strong><%= @maintenances.where(status: false).count %></strong></p>
+          <p style="font-size: 25px; margin-top: 9px; margin-bottom: 0px; color: #3A506B"><strong><%= @maintenances.where(status: false).count %></strong></p>
+          <p style="font-size: 16px; margin-top: 0px; margin-bottom: 5px">Undone</p>
           <p style="font-size: 16px; margin-top: -7px; margin-bottom: 13px">Tasks</p>
         </div>
         <div class="box3">
-          <p style="font-size: 16px; margin-top: 7px; margin-bottom: 13px">Unresolved</p>
-          <p style="font-size: 25px; margin-top: 7px; margin-bottom: 13px; color: #5BC0BE"><strong><%= @problems.where(status: false).count %></strong></p>
+          <p style="font-size: 25px; margin-top: 9px; margin-bottom: 0px; color: #FF595E"><strong><%= @problems.where(status: false).count %></strong></p>
+          <p style="font-size: 16px; margin-top: 0px; margin-bottom: 5px">Unresolved</p>
           <p style="font-size: 16px; margin-top: -7px; margin-bottom: 13px">Problems</p>
         </div>
     </div>
