@@ -1,4 +1,4 @@
-<div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-bs-ride="carousel">
+<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-indicators mt-5">
     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 0"></button>
     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 1"></button>
@@ -6,29 +6,62 @@
     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 3"></button>
   </div>
   <div class="carousel-inner">
-    <div class="carousel-item active gradient">
-      <h1 class="title"><strong>My Dash</strong></h1>
-      <p class="sub">Everything you need to take care of your vehicle in one place .</p>
-      <img src="https://images.unsplash.com/photo-1635073908681-b4dfbd6015e8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" class="d-block w-100 full-height" alt="...">
+    <div class="carousel-item  bg1 active ">
+      <div class="wrapper">
+        <div class="sub-carousel">
+          <div><%= image_tag "logos/MyDashLogo2.png", class: "logo" %></div>
+          <h1><strong>My Dash</strong></h1>
+          <p>Everything you need <br>
+            to take care of your vehicle in <br>
+            one place .</p>
+        </div>
+        <div class="button w-100 mb-5">
+          <% link_path = user_signed_in? ? overview_index_path : new_user_session_path %>
+          <%= link_to "Let's get Started", link_path, class: "btn btn-light btn-lg w-75 rounded-pill" %>
+        </div>
+      </div>
     </div>
-    <div class="carousel-item gradient">
-      <h1 class="title"><strong>Reminder</strong></h1>
-      <p class="sub">Keep up with your vehicle maintenance</p>
-      <img src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" class="d-block w-100 full-height" alt="...">
+    <div class="carousel-item bg2">
+      <div class="wrapper">
+        <div class="sub-carousel">
+          <div><%= image_tag "logos/MyDashLogo2.png", class: "logo" %></div>
+          <h1><strong>Reminder</strong></h1>
+          <p>Keep up with your <br>
+            vehicle maintenance</p>
+        </div>
+        <div class="button w-100 mb-5">
+          <% link_path = user_signed_in? ? overview_index_path : new_user_session_path %>
+          <%= link_to "Let's get Started", link_path, class: "btn btn-light btn-lg w-75 rounded-pill" %>
+        </div>
+      </div>
     </div>
-    <div class="carousel-item gradient">
-      <h1 class="title"><strong>Safer</strong></h1>
-      <p class="sub">Add items to your wishlist know if the prices go UP or Down</p>
-      <img src="https://images.unsplash.com/photo-1624809502663-2ce184a316fc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80" class="d-block w-100 full-height R1" alt="...">
+    <div class="carousel-item bg3">
+      <div class="wrapper">
+        <div class="sub-carousel">
+          <div><%= image_tag "logos/MyDashLogo2.png", class: "logo" %></div>
+          <h1><strong>Safer</strong></h1>
+          <p>Add items to your wishlist <br>
+            know if the prices go <br>
+            UP or Down</p>
+        </div>
+        <div class="button w-100 mb-5">
+          <% link_path = user_signed_in? ? overview_index_path : new_user_session_path %>
+          <%= link_to "Let's get Started", link_path, class: "btn btn-light btn-lg w-75 rounded-pill" %>
+        </div>
+      </div>
     </div>
-    <div class="carousel-item gradient">
-      <h1 class="title"><strong>Better</strong></h1>
-      <p class="sub">Keep track of your expenses get a real-time average</p>
-      <img src="https://images.unsplash.com/photo-1621252792374-2b79e3fcf295?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=627&q=80" class="d-block w-100 full-height" alt="...">
-    </div>
-    <div class="w-100">
-      <% link_path = user_signed_in? ? vehicles_path : new_user_session_path %>
-      <%= link_to "Let's get Started", link_path, class: "btn btn-light btn-lg w-75 rounded-pill" %>
+    <div class="carousel-item bg4">
+      <div class="wrapper">
+        <div class="sub-carousel">
+          <div><%= image_tag "logos/MyDashLogo2.png", class: "logo" %></div>
+          <h1><strong>Better</strong></h1>
+          <p>Keep track of your expenses <br>
+            get a real-time average</p>
+        </div>
+        <div class="button w-100 mb-5">
+          <% link_path = user_signed_in? ? overview_index_path : new_user_session_path %>
+          <%= link_to "Let's get Started", link_path, class: "btn btn-light btn-lg w-75 rounded-pill" %>
+        </div>
+      </div>
     </div>
   </div>
-</div>
