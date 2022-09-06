@@ -1,49 +1,69 @@
 <div class = "overview-header text-center">
   <%= image_tag "logos/MyDashLogo1.png", id:"logo-overview" %>
   <div class="welcome">
-  <p>Welcome</p>
-  <h1><%= current_user.first_name %></h1>
+    <p>Welcome</p>
+    <h1><%= current_user.first_name %></h1>
   </div>
 </div>
-  <div class = "container">
-    <div class = "boxes d-flex justify-content-evenly text-center">
-        <div class="box1">
-          <p style="font-size: 25px; margin-top: 9px; margin-bottom: 0px; color: #5BC0BE"><strong><%= current_user.vehicles.count %></strong></p>
-          <p style="font-size: 16px; margin-top: 0px; margin-bottom: 5px">Registered</p>
-          <p style="font-size: 16px; margin-top: -7px; margin-bottom: 13px">Vehicles</p>
-        </div>
-        <div class="box2">
-          <p style="font-size: 25px; margin-top: 9px; margin-bottom: 0px; color: #3A506B"><strong><%= @maintenances.where(status: false).count %></strong></p>
-          <p style="font-size: 16px; margin-top: 0px; margin-bottom: 5px">Undone</p>
-          <p style="font-size: 16px; margin-top: -7px; margin-bottom: 13px">Tasks</p>
-        </div>
-        <div class="box3">
-          <p style="font-size: 25px; margin-top: 9px; margin-bottom: 0px; color: #FF595E"><strong><%= @problems.where(status: false).count %></strong></p>
-          <p style="font-size: 16px; margin-top: 0px; margin-bottom: 5px">Unresolved</p>
-          <p style="font-size: 16px; margin-top: -7px; margin-bottom: 13px">Problems</p>
-        </div>
+<%# ------------------------------------------------- 3 Cards -------------------------------------------------------------------- %>
+<div class = "container">
+  <div class = "boxes d-flex justify-content-evenly text-center">
+    <div class="box1">
+      <p style="font-size: 25px; margin-top: 9px; margin-bottom: 0px; color: #5BC0BE"><strong><%= current_user.vehicles.count %></strong></p>
+      <p style="font-size: 16px; margin-top: 0px; margin-bottom: 5px">Registered</p>
+      <p style="font-size: 16px; margin-top: -7px; margin-bottom: 13px">Vehicles</p>
     </div>
-    <div>
-      <% @sum_maintenances = 0 %>
-      <% @sum_undone_maintenances = 0 %>
-      <% @sum_problems = 0 %>
-      <% @sum_undone_problems = 0 %>
-      <% @sum_wishlist = 0 %>
-      <% @sum_undone_wishlist = 0 %>
-      <% current_user.vehicles.each do |vehicle|  %>
-        <% @sum_maintenances += vehicle.maintenances.where(status: true).sum(:price) %>
-        <% @sum_undone_maintenances += vehicle.maintenances.where(status: false).sum(:price) %>
-        <% @sum_problems += vehicle.problems.where(status: true).sum(:price) %>
-        <% @sum_undone_problems += vehicle.problems.where(status: false).sum(:price) %>
-        <% @sum_wishlist += vehicle.wishlists.where(status: true).sum(:price) %>
-        <% @sum_undone_wishlist += vehicle.wishlists.where(status: false).sum(:price) %>
-      <% end %>
-      <p><%= Maintenance.count %></p>
-      <p>Total needed to spend on Maintenances: <%= @sum_undone_maintenances %> €</p>
-      <p>Total needed to spent on Problems: <%= @sum_undone_problems %> €</p>
-      <p>Total needed to spent on Wishlist Items: <%= @sum_undone_wishlist %> €</p>
-      <p>Total spent on Maintenances: <%= @sum_maintenances %> €</p>
-      <p>Total spent on Problems: <%= @sum_problems %> €</p>
-      <p>Total spent on Wishlist Items: <%= @sum_wishlist %> €</p>
+    <div class="box2">
+      <p style="font-size: 25px; margin-top: 9px; margin-bottom: 0px; color: #3A506B"><strong>
+          <% @sum_of_undone_maintenance = 0 %>
+          <% current_user.vehicles.each do |vehicle|  %>
+            <% vehicle.maintenances.where(status: false).each do |maintenance| %>
+              <%  @sum_of_undone_maintenance += 1 %>
+            <% end %>
+          <% end %>
+          <%= @sum_of_undone_maintenance %>
+        </strong>
+      </p>
+      <p style="font-size: 16px; margin-top: 0px; margin-bottom: 5px">Undone</p>
+      <p style="font-size: 16px; margin-top: -7px; margin-bottom: 13px">Tasks</p>
+    </div>
+    <div class="box3">
+      <p style="font-size: 25px; margin-top: 9px; margin-bottom: 0px; color: #FF595E"><strong>
+          <% @sum_of_undone_problems = 0 %>
+          <% current_user.vehicles.each do |vehicle|  %>
+            <% vehicle.problems.where(status: false).each do |problem| %>
+              <%  @sum_of_undone_problems += 1 %>
+            <% end %>
+          <% end %>
+          <%= @sum_of_undone_problems %>
+        </strong>
+      </p>
+      <p style="font-size: 16px; margin-top: 0px; margin-bottom: 5px">Unresolved</p>
+      <p style="font-size: 16px; margin-top: -7px; margin-bottom: 13px">Problems</p>
     </div>
   </div>
+  <div>
+    <%# ------------------------------------------------- Graph -------------------------------------------------------------------- %>
+    <%= column_chart @info %>
+    <% @sum_maintenances = 0 %>
+    <% @sum_undone_maintenances = 0 %>
+    <% @sum_problems = 0 %>
+    <% @sum_undone_problems = 0 %>
+    <% @sum_wishlist = 0 %>
+    <% @sum_undone_wishlist = 0 %>
+    <% current_user.vehicles.each do |vehicle|  %>
+      <% @sum_maintenances += vehicle.maintenances.where(status: true).sum(:price) %>
+      <% @sum_undone_maintenances += vehicle.maintenances.where(status: false).sum(:price) %>
+      <% @sum_problems += vehicle.problems.where(status: true).sum(:price) %>
+      <% @sum_undone_problems += vehicle.problems.where(status: false).sum(:price) %>
+      <% @sum_wishlist += vehicle.wishlists.where(status: true).sum(:price) %>
+      <% @sum_undone_wishlist += vehicle.wishlists.where(status: false).sum(:price) %>
+    <% end %>
+    <p>Total needed to spend on Maintenances: <%= @sum_undone_maintenances %> €</p>
+    <p>Total needed to spent on Problems: <%= @sum_undone_problems %> €</p>
+    <p>Total needed to spent on Wishlist Items: <%= @sum_undone_wishlist %> €</p>
+    <p>Total spent on Maintenances: <%= @sum_maintenances %> €</p>
+    <p>Total spent on Problems: <%= @sum_problems %> €</p>
+    <p>Total spent on Wishlist Items: <%= @sum_wishlist %> €</p>
+  </div>
+</div>

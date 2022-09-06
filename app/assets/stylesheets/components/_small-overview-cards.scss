@@ -1,23 +1,28 @@
 .small-overview-cards {
-  // box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   align-items: center;
-  margin: 5px;
-  padding: 5px;
-  width: 250px;
+  padding: 10px;
+  background: #FFFFFF;
+  box-shadow: 0 0 15px rgba(137, 134, 134, 0.2);
+  width: 100vw;
 }
 
 .small-overview-cards h2 {
  text-align: center;
- font-size: 16px;
+ font-size: 22px;
 }
 
 .overview-box {
   align-items: center;
-  padding: 5px;
+  background: #FFFFFF;
+  box-shadow: 0 0 15px rgba(137, 134, 134, 0.2);
+  margin-top: 20px;
+  padding: 10px;
+  width: 100vw;
 }
 
-.overview-box h3 {
+.overview-box h2 {
   text-align: center;
+  font-size: 22px;
 }
 
 .overview-box h6 {

@@ -4,6 +4,7 @@ body {
   padding: 0;
   margin-bottom: 79px;
   background-color: #F3F5F7;
+  height: 100vh;
 }
 
 li p {
@@ -14,6 +15,7 @@ li p {
   --bs-nav-link-color: #595959;
   --bs-nav-link-hover-color: #0a58ca;
   --bs-nav-link-disabled-color: #6c757d;
+
 }
 
 .nav-tabs {
@@ -21,14 +23,14 @@ li p {
 }
 
 .nav-item .active {
-  border-bottom: 1px solid black !important;
+  border-bottom: 2px solid rgb(49, 125, 255) !important;
+  background-color: transparent !important;
+  font-weight: bold;
   border-top: 0 !important;
   border-left: 0 !important;
   border-right: 0 !important;
-  background-color: transparent !important;
 }
 
 .nav-item button {
-  font-size: 9px;
+  font-size: 11px;
 }
-

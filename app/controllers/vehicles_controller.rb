@@ -8,9 +8,9 @@ class VehiclesController < ApplicationController
 
     @info =
       {
-        "Maintenances" => @vehicle.maintenances.sum(:price),
-        "Problems" => @vehicle.problems.sum(:price),
-        "Wishlist" => @vehicle.wishlists.sum(:price)
+        "Maintenances" => @vehicle.maintenances.where(status: true).sum(:price),
+        "Problems" => @vehicle.problems.where(status: true).sum(:price),
+        "Wishlist" => @vehicle.wishlists.where(status: true).sum(:price)
       }
   end
 
