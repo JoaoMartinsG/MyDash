@@ -219,11 +219,12 @@
         <% @vehicle.wishlists.where(status: false).each do |wishlist| %>
           <li class="list-group-item d-flex justify-content-between" data-controller = "display-info">
             <div class="wishlist-infos" data-display-info-target="infos">
-              <h4><%= wishlist.name %>&nbsp;<%= wishlist.price %>EUR&nbsp;</h4>
-              <p class="d-none " data-display-info-target="form">
+              <h4><%= wishlist.name %>&nbsp;<small> <%= wishlist.price %>EUR&nbsp;</small></h4>
+              <p class="d-none" data-display-info-target="form">
+
+                Store Page: <small><%= wishlist.url %></small>
                 <br>
-                Store Page: <%= wishlist.url %>
-                Controls: <br>
+                <br>
                 <%= link_to edit_vehicle_wishlist_path(@vehicle, wishlist) do %>
                   Edit <i class="fa-solid fa-pen fa-xs ml-2"></i>
                 <% end %>
