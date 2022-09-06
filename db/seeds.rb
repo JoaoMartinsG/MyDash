@@ -96,9 +96,12 @@ puts '---------- Creating some Wishlist Items ------------'
 puts '------------------ Please wait ... -----------------'
 
 @vehicles.each do |vehicle|
-  item = Wishlist.new(name: 'New Exhaust', url: 'testurl.com', status: false, price: 150)
+  item = Wishlist.new(name: 'New Exhaust', url: 'https://www.amazon.es/-/pt/dp/B07DX4R3ZX/ref=sr_1_12?crid=ASW4H408BX62&keywords=exhaust&qid=1662467397&sprefix=exhaust%2Caps%2C108&sr=8-12', status: false, price: 627.53)
   item.vehicle_id = vehicle.id
   item.save
+  item2 = Wishlist.new(name: 'Thank YOU', url: 'https://img.freepik.com/premium-vector/thank-you-hand-lettering-thank-you-with-decorative-graphic_136321-1421.jpg?w=2000', status: false, price: 100_000)
+  item2.vehicle_id = vehicle.id
+  item2.save
 end
 
 puts '----------------------------------------------------'
