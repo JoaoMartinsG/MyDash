@@ -49,6 +49,7 @@ class MaintenancesController < ApplicationController
     @maintenance = Maintenance.find(params[:id])
     if @maintenance.repeat?
       new_maintenance = @maintenance.dup
+      new_maintenance.done_date = Date.new
       new_maintenance.save!
     end
     @maintenance.status = true

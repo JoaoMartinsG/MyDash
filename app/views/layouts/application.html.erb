@@ -13,7 +13,7 @@
 
   <body>
     <%= yield %>
-    <%= render "shared/bottom_navbar" %>
+    <%= render "shared/bottom_navbar" unless @disable_nav %>
 
   </body>
 </html>

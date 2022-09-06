@@ -62,13 +62,13 @@ puts '------------------ Please wait ... -----------------'
 
 @vehicles = Vehicle.all
 @vehicles.each do |vehicle|
-  maintenance = Maintenance.new(title: 'Pay IUC', description: 'Pay circulation tax', repeat: true, priority: 'High', price: 150, status: false)
+  maintenance = Maintenance.new(title: 'Pay IUC', description: 'Pay circulation tax', repeat: false, priority: 'High', price: 150, status: false)
   maintenance.vehicle_id = vehicle.id
   maintenance.save
-  maintenance = Maintenance.new(title: 'Pay Insurance', description: 'Pay Insurance', repeat: false, priority: 'Low', price: 300, status: false)
+  maintenance = Maintenance.new(title: 'Pay Insurance', description: 'Pay Insurance', repeat: true, priority: 'High', price: 300, status: false)
   maintenance.vehicle_id = vehicle.id
   maintenance.save
-  maintenance = Maintenance.new(title: 'Take car for inspection', description: 'Take car for inspection', repeat: false, priority: 'Medium', price: 35, status: false)
+  maintenance = Maintenance.new(title: 'Take car for inspection', description: 'Take car for inspection', repeat: false, priority: 'High', price: 35, status: false)
   maintenance.vehicle_id = vehicle.id
   maintenance.save
 end
