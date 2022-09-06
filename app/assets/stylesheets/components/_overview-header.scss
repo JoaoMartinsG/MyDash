@@ -1,0 +1,60 @@
+.overview-header {
+  position: absolute;
+  width: 100vw;
+  height: 254px;
+  left: 0px;
+  top: 0px;
+  background: linear-gradient(180deg, rgba(28, 37, 65, 0.7) 0%, rgba(80, 169, 167, 0.7) 100%), url("logos/overview_banner.png");
+  border-radius: 0px 0px 40px 40px;
+  background-size: cover;
+}
+
+.welcome {
+  position: relative;
+  font-style: normal;
+  font-weight: 400;
+  text-align: center;
+  top: 30%;
+  color: #FFFFFF;
+}
+
+.welcome h1 {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 44px;
+  // text-align: center;
+
+  color: #FFFFFF;
+
+  /* Shadow */
+
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+}
+
+.welcome p {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 29px;
+  // text-align: center;
+
+  color: #FFFFFF;
+
+  /* Shadow */
+
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+}
+
+#logo-overview {
+  filter: drop-shadow(3px 2px 4px rgba(0, 0, 0, 0.6));
+  position: relative;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  top: 15%;
+}
+
+.container{
+  margin-top: 268px;
+}
