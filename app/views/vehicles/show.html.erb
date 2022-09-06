@@ -70,7 +70,7 @@
       </div>
       <ul class="list-group" data-toggle-switch-target="list">
         <% @vehicle.maintenances.where(status: false).each do |maintenance| %>
-          <li class="list-group-item d-flex justify-content-between" data-controller = "display-info">
+          <li class="list-group-item d-flex justify-content-between wishlist_Maintanence_list" data-controller = "display-info">
             <div class="wishlist-infos" data-display-info-target="infos">
               <h2 class='m-0'><%= maintenance.title %></h2>
               <p class="d-none" data-display-info-target="form">
@@ -106,7 +106,7 @@
       <ul class="list-group d-none" data-toggle-switch-target="list">
         <h4 style="font-size: 16px; font-weight: bold">Completed tasks</h4>
         <% @vehicle.maintenances.where(status: true).each do |maintenance| %>
-          <li class="list-group-item d-flex justify-content-between" data-controller = "display-info">
+          <li class="list-group-item d-flex justify-content-between " data-controller = "display-info">
             <div class="wishlist-infos" data-display-info-target="infos">
               <h2 class='m-0'><%= maintenance.title %></h2>
               <p class="d-none" data-display-info-target="form">
@@ -223,7 +223,7 @@
         </div>
         <ul class="list-group" data-toggle-switch-target="list">
           <% @vehicle.wishlists.where(status: false).each do |wishlist| %>
-            <li class="list-group-item d-flex justify-content-between" data-controller = "display-info">
+            <li class="list-group-item d-flex justify-content-between wishlist_Maintanence_list" data-controller = "display-info">
               <div class="wishlist-infos" data-display-info-target="infos">
                 <% @url = wishlist.url %>
                 <h4><%= link_to wishlist.name, "#{wishlist.url}", :target => "_blank" %>&nbsp;<%= wishlist.price %>EUR&nbsp;</h4>
