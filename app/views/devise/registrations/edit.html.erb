@@ -1,6 +1,6 @@
 <div class="container mt-5 d-flex justify-content-center">
   <div class="container-form">
-    <h2 class="form_title">Edit <%= resource_name.to_s.humanize %></h2>
+    <h1 class="form_title">Edit <%= resource_name.to_s.humanize %></h1>
 
     <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
       <%= f.error_notification %>
@@ -25,11 +25,13 @@
                     input_html: { autocomplete: "current-password" } %>
       </div>
 
-      <div class="my-3 d-flex justify-content-center">
-        <%= f.button :submit, "Update" %>
+    <div class="my-3 d-flex justify-ccenter">
+        <%= f.button :submit, "Update",class: 'btn btn-secondary' %>
       </div>
     <% end %>
 
-    <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete, turbo_confirm: "Are you sure?", class: "logoutLink"} %>
-  </div>
+    <div class="my-3 d-flex justify-ccenter">
+      <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete, turbo_confirm: "Are you sure?", class: "logoutLink"} %>
+    </div>
+
 </div>
