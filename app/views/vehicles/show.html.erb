@@ -25,13 +25,12 @@
 
 <div class="tab-content d-flex justify-content-center mt-4" id="myTabContent">
   <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
-    <h2 class="d-flex justify-content-center">Expenses</h2>
     <div class="small-overview-cards">
+      <h2 class="d-flex justify-content-center mt-1"><strong>Expenses</strong></h2>
       <%= column_chart @info %>
     </div>
       <div class="overview-box">
-        <h3>Overview</h3>
-        <h6>Total Money Spent <strong><%= @info.values.sum %> €</strong></h6>
+        <h2 class="mt-1"><strong>Overview</strong></h2>
         <ul>
           <li><div>Maintenance Tasks:</div><div><%= @vehicle.maintenances.count %></div></li>
           <li><div>Problems:</div> <div><%= @vehicle.problems.count %></div></li>
@@ -40,6 +39,7 @@
           <li><div>Spent on Problems:</div> <div><%= @vehicle.problems.sum(:price).round %>€</div></li>
           <li><div>Spent on Wishlist items:</div> <div><%= @vehicle.wishlists.sum(:price).round %>€</div></li>
         </ul>
+        <h2>Total Money Spent</h2><h2 style="color: #FF595E"> <strong><%= @info.values.sum %> €</strong></h2>
     </div>
   </div>
 
@@ -47,8 +47,8 @@
 
   <div class="tab-pane fade w-100" id="maintenance" role="tabpanel" aria-labelledby="maintenance-tab" data-controller="toggle-switch">
     <div class='mx-3'>
-      <div class='mt-3 text-center'>
-        <p><strong>Your Maintenance Tasks:</strong></p>
+      <div class='my-3 text-center'>
+        <h2 style="font-size: 22px"><strong>Your Maintenance Tasks:</strong></h2>
       </div>
       <div class="form-check form-switch" >
         <label class="form-check-label mb-3" for="flexSwitchCheckDefault">To do Tasks: </label>
@@ -91,7 +91,7 @@
 <%# -------------------------------------- COMPLETED MAINTENANCE TASKS ----------------------------------------------------------------- %>
 
       <ul class="list-group d-none" data-toggle-switch-target="list">
-        <h3>Complete tasks</h3>
+        <h4 style="font-size: 16px; font-weight: bold">Completed tasks</h4>
         <% @vehicle.maintenances.where(status: true).each do |maintenance| %>
           <li class="list-group-item d-flex justify-content-between" data-controller = "display-info">
             <div class="wishlist-infos" data-display-info-target="infos">
@@ -108,7 +108,11 @@
           </li>
         <% end %>
       </ul>
-      <%= link_to "Add", new_vehicle_maintenance_path(@vehicle), class: "btn btn-primary mt-3 w-100" %>
+        <div class="plus-card">
+          <%= link_to new_vehicle_maintenance_path(@vehicle) do %>
+          <i class="fa-solid fa-circle-plus"></i>
+          <% end %>
+        </div>
     </div>
   </div>
 
@@ -116,8 +120,8 @@
 
   <div class="tab-pane fade w-100" id="problems" role="tabpanel" aria-labelledby="problems-tab" data-controller="toggle-switch">
     <div class='mx-3'>
-      <div class='mt-3 text-center'>
-        <p><strong>Vehicle Problems</strong></p>
+      <div class='my-3 text-center'>
+        <h2 style="font-size: 22px"><strong>Vehicle Problems</strong></h2>
       </div>
       <div class="form-check form-switch  w-100 align-items-start" >
         <label class="form-check-label mb-3" for="flexSwitchCheckDefault">To do :</label>
@@ -158,7 +162,7 @@
 <%# ---------------------------------------------- COMPLETED PROBLEMS ----------------------------------------------------------------- %>
 
 <ul class="list-group d-none" data-toggle-switch-target="list">
-      <h4 style="font-size: 16px; font-weight: bold" >Problems Solved</h4>
+      <h4 style="font-size: 16px; font-weight: bold">Problems Solved</h4>
         <% @vehicle.problems.where(status: true).each do |problem| %>
           <li class="problem_card">
             <div class="title-price">
@@ -200,8 +204,8 @@
 
   <div class="tab-pane fade w-100" id="wishlist" role="tabpanel" aria-labelledby="wishlist-tab" data-controller="toggle-switch">
     <div class='mx-3'>
-      <div class='mt-3 text-center'>
-        <p><strong>Your Wishlist</strong></p>
+      <div class='my-3 text-center'>
+        <h2 style="font-size: 22px"><strong>Your Wishlist</strong></h2>
       </div>
       <div class="form-check form-switch w-100 align-items-start" >
         <label class="form-check-label mb-3" for="flexSwitchCheckDefault">To do :</label>
@@ -235,7 +239,7 @@
 <%# ---------------------------------------------- Bought Items ----------------------------------------------------------------- %>
 
 <ul class="list-group d-none" data-toggle-switch-target="list">
-        <h3>Bought Items: </h3>
+        <h4 style="font-size: 16px; font-weight: bold">Bought Items: </h4>
         <% @vehicle.wishlists.where(status: true).each do |wishlist| %>
           <li class="list-group-item d-flex justify-content-between">
             <p><%= wishlist.name %>&nbsp;</p>
@@ -250,6 +254,10 @@
           </li>
         <% end %>
       </ul>
-      <%= link_to "Add", new_vehicle_wishlist_path(@vehicle), class: "btn btn-primary mt-3 w-100" %>
+        <div class="plus-card">
+          <%= link_to new_vehicle_wishlist_path(@vehicle) do %>
+          <i class="fa-solid fa-circle-plus"></i>
+          <% end %>
+        </div>
     </div>
   </div>
