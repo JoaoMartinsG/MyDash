@@ -10,6 +10,7 @@
       <%= f.input :repeat %>
       <%= f.input :price %>
       <div class="my-3 d-flex justify-content-center">
+        <%= link_to 'Cancel', vehicle_path(@vehicle, active: 'maintenance'), class: "btn btn-primary mx-2" %>
         <%= f.submit class: 'btn btn-primary' %>
       </div>
     <% end %>

@@ -4,14 +4,13 @@
     <h1 class="form_title">Edit Wishlist Item</h1>
 
     <%= simple_form_for [@vehicle, @wishlist] do |f| %>
-    <%= f.input :name %>
-    <%= f.input :url %>
-    <%= f.input :price %>
-    <div class="my-3 d-flex justify-content-center">
-    <%= f.submit class: 'btn btn-primary' %>
-    </div>
+      <%= f.input :name %>
+      <%= f.input :url %>
+      <%= f.input :price %>
+      <div class="my-3 d-flex justify-content-center">
+        <%= link_to 'Cancel', vehicle_path(@vehicle, active: 'wishlist'), class: "btn btn-primary mx-2" %>
+        <%= f.submit class: 'btn btn-primary' %>
+      </div>
     <% end %>
-    <br>
-    <%= link_to "Back", vehicle_wishlists_path(@wishlist) %>
   </div>
 </div>

@@ -1,18 +1,19 @@
 <div class="container mt-5 d-flex justify-content-center">
   <div class="container-form">
-    <h1 class="form_title">New Maintenance  </h1>
+    <h1 class="form_title"> New Maintenance task </h1>
 
     <%= simple_form_for [@vehicle, @maintenance] do |f| %>
-    <div class="TitleInput">
-      <%= f.input :title, placeholder: "Oil Change" %>
-    </div>
-    <%= f.input :description, placeholder: "Regular oil change " %>
-    <%= f.input :priority, collection: ['Low', 'Medium', 'High'] %>
-    <%= f.input :repeat %>
-    <%= f.input :price %>
-    <div class="my-3 d-flex justify-content-center">
-    <%= f.submit class: 'btn btn-primary' %>
-    </div>
+      <div class="TitleInput">
+        <%= f.input :title, placeholder: "Oil Change" %>
+      </div>
+      <%= f.input :description, placeholder: "Regular oil change " %>
+      <%= f.input :priority, collection: ['Low', 'Medium', 'High'] %>
+      <%= f.input :repeat %>
+      <%= f.input :price %>
+      <div class="my-3 d-flex justify-content-center">
+        <%= link_to 'Cancel', vehicle_path(@vehicle, active: 'maintenance'), class: "btn btn-primary mx-2" %>
+        <%= f.submit class: 'btn btn-primary' %>
+      </div>
     <% end %>
   </div>
 </div>

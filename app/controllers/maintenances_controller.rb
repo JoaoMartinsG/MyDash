@@ -19,7 +19,7 @@ class MaintenancesController < ApplicationController
     @maintenance = Maintenance.new(maintenance_params)
     @maintenance.vehicle = @vehicle
     if @maintenance.save
-      redirect_to vehicle_path(@vehicle)
+      redirect_to vehicle_path(@vehicle, active: 'maintenance')
     else
       render :new, status: :unprocessable_entity
     end
@@ -34,14 +34,14 @@ class MaintenancesController < ApplicationController
     @vehicle = Vehicle.find(params[:vehicle_id])
     @maintenance = Maintenance.find(params[:id])
     @maintenance.update(maintenance_params)
-    redirect_to vehicle_path(@vehicle)
+    redirect_to vehicle_path(@vehicle, active: 'maintenance')
   end
 
   def destroy
     @vehicle = Vehicle.find(params[:vehicle_id])
     @maintenance = Maintenance.find(params[:id])
     @maintenance.destroy
-    redirect_to vehicle_path(@vehicle), status: :see_other
+    redirect_to vehicle_path(@vehicle, active: 'maintenance'), status: :see_other
   end
 
   def done
@@ -56,7 +56,7 @@ class MaintenancesController < ApplicationController
     @maintenance.done_date = DateTime.now
     @maintenance.save!
 
-    redirect_to vehicle_path(@vehicle), status: :see_other
+    redirect_to vehicle_path(@vehicle, active: 'maintenance'), status: :see_other
   end
 
   private
