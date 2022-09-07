@@ -1,6 +1,6 @@
 <div class="container mt-5 d-flex justify-content-center">
   <div class="container-form">
-    <h1 class="form_title">Edit <%= resource_name.to_s.humanize %></h1>
+    <h1 class="form_title"> Edit <%= resource_name.to_s.humanize %></h1>
 
     <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
       <%= f.error_notification %>

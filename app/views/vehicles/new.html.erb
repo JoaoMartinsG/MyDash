@@ -1,14 +1,21 @@
 
-<h1>Add a new vehicle</h1>
-<%= simple_form_for @vehicle do |f| %>
+
+<div class="container mt-5 d-flex justify-content-center">
+  <div class = "container-form">
+    <h1 class="form_title">Add a new vehicle</h1>
+    <%= simple_form_for @vehicle do |f| %>
 
 
-<%= f.input :type_of_vehicle, collection: ['Car', 'Motorcycle'] %>
-<%= f.input :make %>
-<%= f.input :model  %>
-<%= f.input :plate  %>
-<%= f.input :year  %>
-<%= f.input :mileage  %>
-<%= f.input :driver  %>
-<%= f.submit %>
-<% end %></p>
+    <%= f.input :type_of_vehicle, collection: ['Car', 'Motorcycle'] %>
+    <%= f.input :make, placeholder: "Mercedes" %>
+    <%= f.input :model, placeholder: "G-Class" %>
+    <%= f.input :plate, placeholder: "45-XQ-72" %>
+    <%= f.input :year, placeholder: "2018" %>
+    <%= f.input :mileage, placeholder: "85 000 km" %>
+    <%= f.input :driver, placeholder: "Rodrigo Cruz" %>
+    <div class = "my-3 d-flex justify-content-center">
+    <%= f.submit class: "btn btn-primary"%>
+    </div>
+    <% end %></p>
+  </div>
+</div>
