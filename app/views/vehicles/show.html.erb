@@ -74,7 +74,7 @@
   <div class="tab-pane fade w-100 <%= 'active show' if params[:active] == 'maintenance' %>" id="maintenance" role="tabpanel" aria-labelledby="maintenance-tab" data-controller="toggle-switch">
     <div class='mx-3'>
       <div class='my-3 text-center'>
-        <h2 style="font-size: 22px"><strong>YourMaintenance Tasks</strong></h2>
+        <h2 style="font-size: 22px"><strong>Your Maintenance Tasks</strong></h2>
       </div>
       <div class="form-check form-switch" >
         <label class="form-check-label mb-3" for="flexSwitchCheckDefault">To do Tasks: </label>
@@ -84,10 +84,10 @@
         <% @vehicle.maintenances.where(status: false).each do |maintenance| %>
           <li class="list-group-item d-flex justify-content-between" data-controller = "display-info">
             <div class="wishlist-infos" data-display-info-target="infos">
-              <h2 class='m-0'><%= maintenance.title %></h2>
-              <p class="d-none" data-display-info-target="form">
+              <h2 style="font-size: 18px" class='m-0'><strong><%= maintenance.title %></strong></h2>
+              <p class="d-none mt-1" data-display-info-target="form">
                 <%= maintenance.description %> <br>
-                Priority: <%= maintenance.priority %> <br>
+                Priority: <%= maintenance.priority %><br>
                 Price: <%= maintenance.price.round %>€ <br>
                 <% if maintenance.done_date.nil? %>
                 <% else %>
@@ -99,7 +99,7 @@
                   Repeat: No <br>
                 <% end %>
                 Controls: <br>
-                <%= link_to "Edit", edit_vehicle_maintenance_path(@vehicle, maintenance), class: "btn btn-sm btn-secondary rounded-pill"%>
+                <%= link_to "Edit", edit_vehicle_maintenance_path(@vehicle, maintenance), class: "btn btn-sm btn-secondary rounded-pill" %>
                 <%= link_to "Delete", vehicle_maintenance_path(@vehicle, maintenance), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-sm btn-secondary rounded-pill" %>
                 <%= link_to "Done", done_vehicle_maintenance_path(@vehicle, maintenance), data: { turbo_method: :patch, turbo_confirm: "Is this task done?" }, class: "btn btn-sm btn-secondary rounded-pill" %>
               </p>
@@ -114,12 +114,12 @@
         <% @vehicle.maintenances.where(status: true).each do |maintenance| %>
           <li class="list-group-item d-flex justify-content-between" data-controller = "display-info">
             <div class="wishlist-infos" data-display-info-target="infos">
-              <h2 class='m-0'><%= maintenance.title %></h2>
+              <h2 style="font-size: 18px" class='m-0'><strong><%= maintenance.title %></strong></h2>
               <p class="d-none" data-display-info-target="form">
                 <%= maintenance.description %> <br>
                 Price: <%= maintenance.price.round %>€ <br>
                 Done at: <%= maintenance.done_date.to_formatted_s(:short) %> <br>
-                <%= link_to "Delete", vehicle_maintenance_path(@vehicle, maintenance), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: 'btn btn-warning btn-sm mt-3' %>
+                <%= link_to "Delete", vehicle_maintenance_path(@vehicle, maintenance), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-sm btn-secondary rounded-pill" %>
               </p>
             </div>
             <i class="fa-solid fa-chevron-down" data-action="click->display-info#displayForm"></i>
@@ -232,7 +232,7 @@
             <li class="list-group-item d-flex justify-content-between" data-controller = "display-info">
               <div class="wishlist-infos" data-display-info-target="infos">
                 <% @url = wishlist.url %>
-                <h4><%= link_to wishlist.name, "#{wishlist.url}", :target => "_blank" %>&nbsp;<%= wishlist.price %>EUR&nbsp;</h4>
+                <h4 style="font-size: 18px;"><strong><%= link_to wishlist.name, "#{wishlist.url}", :target => "_blank" %>&nbsp;<span style="font-size: 16px; margin-left: 10px"><%= wishlist.price %> EUR</strong></span>&nbsp;</h4>
                 <p class="d-none " data-display-info-target="form">
                   <br>
                   Store Page: <%= link_to wishlist.url, "#{wishlist.url}", :target => "_blank" %> <br>
