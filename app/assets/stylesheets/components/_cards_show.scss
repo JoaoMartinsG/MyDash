@@ -1,7 +1,7 @@
 .card-product {
   border-radius: 5px;
   overflow: hidden;
-  height: 150px;
+  min-height: 150px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   display: flex;
   align-items: center;
@@ -27,7 +27,8 @@
 
 .card-product h2 {
   font-size: 20px;
-  margin-left: 31px;
+  // margin-left: 31px;
+  margin-top: 10px;
   color: #435d7e;
   font-weight: bold;
   font-family: 'Montserrat', sans-serif;
@@ -78,6 +79,7 @@
 .vehicle-icons {
   font-size: 18px;
   margin-top: 9px;
+  margin-bottom: 10px;
 }
 
 .vehicle-icons .fa-pen {
