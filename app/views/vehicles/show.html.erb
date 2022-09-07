@@ -62,13 +62,13 @@
   <div class="tab-pane fade w-100" id="maintenance" role="tabpanel" aria-labelledby="maintenance-tab" data-controller="toggle-switch">
     <div class='mx-3'>
       <div class='my-3 text-center'>
-        <h2 style="font-size: 22px"><strong>Your Maintenance Tasks:</strong></h2>
+        <h2 style="font-size: 22px"><strong>YourMaintenance Tasks</strong></h2>
       </div>
       <div class="form-check form-switch" >
         <label class="form-check-label mb-3" for="flexSwitchCheckDefault">To do Tasks: </label>
         <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" data-action="click->toggle-switch#toggle">
       </div>
-      <ul class="list-group" data-toggle-switch-target="list">
+      <ul class="list-group ListStyle" data-toggle-switch-target="list">
         <% @vehicle.maintenances.where(status: false).each do |maintenance| %>
           <li class="list-group-item d-flex justify-content-between" data-controller = "display-info">
             <div class="wishlist-infos" data-display-info-target="infos">
@@ -221,7 +221,7 @@
           <label class="form-check-label mb-3" for="flexSwitchCheckDefault">To do :</label>
           <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" data-action="click->toggle-switch#toggle">
         </div>
-        <ul class="list-group" data-toggle-switch-target="list">
+        <ul class="list-group ListStyle" data-toggle-switch-target="list">
           <% @vehicle.wishlists.where(status: false).each do |wishlist| %>
             <li class="list-group-item d-flex justify-content-between" data-controller = "display-info">
               <div class="wishlist-infos" data-display-info-target="infos">
