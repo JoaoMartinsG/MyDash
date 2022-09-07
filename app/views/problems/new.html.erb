@@ -3,13 +3,14 @@
     <h1 class ="form_title"> New Problem </h1>
 
     <%= simple_form_for [@vehicle, @problem] do |f| %>
-    <%= f.input :title, placeholder: "Noisy wheel" %>
-    <%= f.input :description, as: :text, placeholder: "Noise coming from the left rear wheel."%>
-    <%= f.input :priority, collection: ['Low', 'Medium', 'High'] %>
-    <%= f.input :price %>
-    <div class="my-3 d-flex justify-content-center">
-    <%= f.submit class: 'btn btn-primary' %>
-    </div>
+      <%= f.input :title, placeholder: "Noisy wheel" %>
+      <%= f.input :description, as: :text, placeholder: "Noise coming from the left rear wheel."%>
+      <%= f.input :priority, collection: ['Low', 'Medium', 'High'] %>
+      <%= f.input :price %>
+      <div class="my-3 d-flex justify-content-center">
+        <%= link_to 'Cancel', vehicle_path(@vehicle, active: 'problems'), class: "btn btn-primary mx-2" %>
+        <%= f.submit class: 'btn btn-primary' %>
+      </div>
     <% end %>
   </div>
 </div>

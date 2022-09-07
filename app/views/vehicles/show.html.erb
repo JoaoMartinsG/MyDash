@@ -7,21 +7,21 @@
 <div class= 'd-flex justify-content-center mt-3'>
   <ul class="nav nav-tabs w-100 justify-content-center" id="myTab" role="tablist">
     <li class="nav-item" role="presentation">
-      <button class="nav-link active" id="overview-tab" data-bs-toggle="tab" data-bs-target="#overview" type="button" role="tab" aria-controls="home" aria-selected="true">Overview</button>
+      <button class="nav-link <%= 'active' if params[:active] == 'overview' || params[:active].blank? %>" id="overview-tab" data-bs-toggle="tab" data-bs-target="#overview" type="button" role="tab" aria-controls="home" aria-selected="true">Overview</button>
     </li>
     <li class="nav-item" role="presentation">
-      <button class="nav-link" id="maintenance-tab" data-bs-toggle="tab" data-bs-target="#maintenance" type="button" role="tab" aria-controls="maintenance" aria-selected="false">Maintenance</button>
+      <button class="nav-link <%= 'active' if params[:active] == 'maintenance' %>" id="maintenance-tab" data-bs-toggle="tab" data-bs-target="#maintenance" type="button" role="tab" aria-controls="maintenance" aria-selected="false">Maintenance</button>
     </li>
     <li class="nav-item" role="presentation">
-      <button class="nav-link" id="problems-tab" data-bs-toggle="tab" data-bs-target="#problems" type="button" role="tab" aria-controls="problems" aria-selected="false">Problems</button>
+      <button class="nav-link <%= 'active' if params[:active] == 'problems' %>" id="problems-tab" data-bs-toggle="tab" data-bs-target="#problems" type="button" role="tab" aria-controls="problems" aria-selected="false">Problems</button>
     </li>
     <li class="nav-item" role="presentation">
-      <button class="nav-link" id="wishlist-tab" data-bs-toggle="tab" data-bs-target="#wishlist" type="button" role="tab" aria-controls="wishlist" aria-selected="false">Wishlist</button>
+      <button class="nav-link <%= 'active' if params[:active] == 'wishlist' %>" id="wishlist-tab" data-bs-toggle="tab" data-bs-target="#wishlist" type="button" role="tab" aria-controls="wishlist" aria-selected="false">Wishlist</button>
     </li>
   </ul>
 </div>
 <div class="tab-content d-flex justify-content-center mt-4" id="myTabContent">
-  <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
+  <div class="tab-pane fade <%= 'active show' if params[:active] == 'overview' || params[:active].blank? %>" id="overview" role="tabpanel" aria-labelledby="overview-tab">
     <div class="small-overview-cards">
       <h2 class="d-flex justify-content-center mt-1"><strong>Expenses</strong></h2>
       <%= column_chart @info %>
@@ -30,28 +30,40 @@
       <h2 class="mt-1"><strong>Overview</strong></h2>
       <ul>
         <li>
-          <div>Maintenance Tasks:</div>
-          <div><%= @vehicle.maintenances.count %></div>
+          <div>Maintenance tasks to do:</div>
+          <div><%= @vehicle.maintenances.where(status: false).count %></div>
         </li>
         <li>
-          <div>Problems:</div>
-          <div><%= @vehicle.problems.count %></div>
+          <div>Problems to resolve:</div>
+          <div><%= @vehicle.problems.where(status: false).count %></div>
         </li>
         <li>
-          <div>Wishlist Items:</div>
-          <div><%= @vehicle.wishlists.count %></div>
+          <div>Wishlist Items to buy:</div>
+          <div><%= @vehicle.wishlists.where(status: false).count %></div>
         </li>
         <li>
           <div>Spent on Maintenance:</div>
-          <div><%= @vehicle.maintenances.sum(:price).round %>€</div>
+          <div><%= @vehicle.maintenances.where(status: true).sum(:price).round %>€</div>
         </li>
         <li>
           <div>Spent on Problems:</div>
-          <div><%= @vehicle.problems.sum(:price).round %>€</div>
+          <div><%= @vehicle.problems.where(status: true).sum(:price).round %>€</div>
         </li>
         <li>
           <div>Spent on Wishlist items:</div>
-          <div><%= @vehicle.wishlists.sum(:price).round %>€</div>
+          <div><%= @vehicle.wishlists.where(status: true).sum(:price).round %>€</div>
+        </li>
+        <li>
+          <div>Needed to spend on Maintenance:</div>
+          <div><%= @vehicle.maintenances.where(status: false).sum(:price).round %>€</div>
+        </li>
+        <li>
+          <div>Needed to spend on Problems:</div>
+          <div><%= @vehicle.problems.where(status: false).sum(:price).round %>€</div>
+        </li>
+        <li>
+          <div>Need to spend on Wishlist items:</div>
+          <div><%= @vehicle.wishlists.where(status: false).sum(:price).round %>€</div>
         </li>
       </ul>
       <h2>Total Money Spent</h2>
@@ -59,7 +71,7 @@
     </div>
   </div>
   <%# ------------------------------------------------- Maintenance Tab -------------------------------------------------------------------- %>
-  <div class="tab-pane fade w-100" id="maintenance" role="tabpanel" aria-labelledby="maintenance-tab" data-controller="toggle-switch">
+  <div class="tab-pane fade w-100 <%= 'active show' if params[:active] == 'maintenance' %>" id="maintenance" role="tabpanel" aria-labelledby="maintenance-tab" data-controller="toggle-switch">
     <div class='mx-3'>
       <div class='my-3 text-center'>
         <h2 style="font-size: 22px"><strong>Your Maintenance Tasks:</strong></h2>
@@ -87,15 +99,9 @@
                   Repeat: No <br>
                 <% end %>
                 Controls: <br>
-                <%= link_to edit_vehicle_maintenance_path(@vehicle, maintenance) do %>
-                  Edit <i class="fa-solid fa-pen fa-xs ml-2"></i>
-                <% end %>
-                <%= link_to vehicle_maintenance_path(@vehicle, maintenance), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
-                  Delete <i class="fa-solid fa-trash-can"></i>
-                <% end %>
-                <%= link_to done_vehicle_maintenance_path(@vehicle, maintenance), data: { turbo_method: :patch, turbo_confirm: "Is this task done?" } do %>
-                  Mark done <i class="fa-solid fa-check"></i>
-                <% end %>
+                <%= link_to "Edit", edit_vehicle_maintenance_path(@vehicle, maintenance), class: "btn btn-sm btn-secondary rounded-pill"%>
+                <%= link_to "Delete", vehicle_maintenance_path(@vehicle, maintenance), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-sm btn-secondary rounded-pill" %>
+                <%= link_to "Done", done_vehicle_maintenance_path(@vehicle, maintenance), data: { turbo_method: :patch, turbo_confirm: "Is this task done?" }, class: "btn btn-sm btn-secondary rounded-pill" %>
               </p>
             </div>
             <i class="fa-solid fa-chevron-down" data-action="click->display-info#displayForm"></i>
@@ -113,7 +119,7 @@
                 <%= maintenance.description %> <br>
                 Price: <%= maintenance.price.round %>€ <br>
                 Done at: <%= maintenance.done_date.to_formatted_s(:short) %> <br>
-                <%= link_to "Delete", vehicle_maintenance_path(@vehicle, maintenance), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: 'btn btn-warning btn-sm mt-3gst' %>
+                <%= link_to "Delete", vehicle_maintenance_path(@vehicle, maintenance), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: 'btn btn-warning btn-sm mt-3' %>
               </p>
             </div>
             <i class="fa-solid fa-chevron-down" data-action="click->display-info#displayForm"></i>
@@ -128,7 +134,7 @@
     </div>
   </div>
   <%# ------------------------------------------------- Problems Tab -------------------------------------------------------------------- %>
-  <div class="tab-pane fade w-100" id="problems" role="tabpanel" aria-labelledby="problems-tab" data-controller="toggle-switch">
+  <div class="tab-pane fade w-100 <%= 'active show' if params[:active] == 'problems' %>" id="problems" role="tabpanel" aria-labelledby="problems-tab" data-controller="toggle-switch">
     <div class='mx-3'>
       <div class='my-3 text-center'>
         <h2 style="font-size: 22px"><strong>Vehicle Problems</strong></h2>
@@ -212,7 +218,7 @@
       </div>
     </div>
     <%# ------------------------------------------------- Wishlist Tab -------------------------------------------------------------------- %>
-    <div class="tab-pane fade w-100" id="wishlist" role="tabpanel" aria-labelledby="wishlist-tab" data-controller="toggle-switch">
+    <div class="tab-pane fade w-100 <%= 'active show' if params[:active] == 'wishlist' %>" id="wishlist" role="tabpanel" aria-labelledby="wishlist-tab" data-controller="toggle-switch">
       <div class='mx-3'>
         <div class='my-3 text-center'>
           <h2 style="font-size: 22px"><strong>Your Wishlist</strong></h2>
@@ -231,15 +237,9 @@
                   <br>
                   Store Page: <%= link_to wishlist.url, "#{wishlist.url}", :target => "_blank" %> <br>
                   Controls: <br>
-                  <%= link_to edit_vehicle_wishlist_path(@vehicle, wishlist) do %>
-                    Edit <i class="fa-solid fa-pen fa-xs ml-2"></i>
-                  <% end %>
-                  <%= link_to vehicle_wishlist_path(@vehicle, wishlist), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
-                    Delete <i class="fa-solid fa-trash-can"></i>
-                  <% end %>
-                  <%= link_to done_vehicle_wishlist_path(@vehicle, wishlist), data: { turbo_method: :patch, turbo_confirm: "Has this item been bought?" } do %>
-                    Bought <i class="fa-solid fa-check"></i>
-                  <% end %>
+                  <%= link_to "Edit", edit_vehicle_wishlist_path(@vehicle, wishlist), class: "btn btn-sm btn-secondary rounded-pill" %>
+                  <%= link_to "Delete", vehicle_wishlist_path(@vehicle, wishlist), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-sm btn-secondary rounded-pill" %>
+                  <%= link_to "Done", done_vehicle_wishlist_path(@vehicle, wishlist), data: { turbo_method: :patch, turbo_confirm: "Has this item been bought?" }, class: "btn btn-sm btn-secondary rounded-pill" %>
                 </p>
               </div>
               <p><i class="fa-solid fa-chevron-down" data-action="click->display-info#displayForm"></i></p>

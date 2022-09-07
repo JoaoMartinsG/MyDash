@@ -9,6 +9,7 @@
     <%= f.input :priority, collection: ['Low', 'Medium', 'High'] %>
     <%= f.input :price %>
     <div class="my-3 d-flex justify-content-center">
+      <%= link_to 'Cancel', vehicle_path(@vehicle, active: 'problems'), class: "btn btn-primary mx-2" %>
       <%= f.submit class: 'btn btn-primary' %>
     </div>
     <% end %>
