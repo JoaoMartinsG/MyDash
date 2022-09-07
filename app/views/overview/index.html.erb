@@ -6,7 +6,7 @@
   </div>
 </div>
 <%# ------------------------------------------------- 3 Cards -------------------------------------------------------------------- %>
-<div class = "container">
+<div class = "container-overview">
   <div class = "boxes d-flex justify-content-evenly text-center">
     <div class="box1">
       <p style="font-size: 25px; margin-top: 9px; margin-bottom: 0px; color: #5BC0BE"><strong><%= current_user.vehicles.count %></strong></p>
@@ -42,9 +42,14 @@
       <p style="font-size: 16px; margin-top: -7px; margin-bottom: 13px">Problems</p>
     </div>
   </div>
-  <div>
     <%# ------------------------------------------------- Graph -------------------------------------------------------------------- %>
+  <div class="small-overview-cards mt-4">
+    <h2 class="d-flex justify-content-center mt-1"><strong>Total Expenses</strong></h2>
     <%= column_chart @info %>
+  </div>
+
+    <%# ------------------------------------------------- Bottom Cards ------------------------------------------------------------ %>
+
     <% @sum_maintenances = 0 %>
     <% @sum_undone_maintenances = 0 %>
     <% @sum_problems = 0 %>
@@ -59,11 +64,50 @@
       <% @sum_wishlist += vehicle.wishlists.where(status: true).sum(:price) %>
       <% @sum_undone_wishlist += vehicle.wishlists.where(status: false).sum(:price) %>
     <% end %>
-    <p>Total needed to spend on Maintenances: <%= @sum_undone_maintenances %> €</p>
-    <p>Total needed to spent on Problems: <%= @sum_undone_problems %> €</p>
-    <p>Total needed to spent on Wishlist Items: <%= @sum_undone_wishlist %> €</p>
-    <p>Total spent on Maintenances: <%= @sum_maintenances %> €</p>
-    <p>Total spent on Problems: <%= @sum_problems %> €</p>
-    <p>Total spent on Wishlist Items: <%= @sum_wishlist %> €</p>
+
+    <% @total_spent = @sum_maintenances + @sum_problems + @sum_wishlist %>
+    <% @total_spend = @sum_undone_maintenances + @sum_undone_problems + @sum_undone_wishlist%>
+
+    <div class="d-flex justify-content-evenly mt-4">
+      <div class="total-spent">
+        <h3>Total Spent</h3>
+        <p span style="color: #F81414"><%= @total_spent %></span> <span style="color: #1A1818">€</p>
+      </div>
+      <div class="total-spent">
+        <h3>To Spend</h3>
+        <p span style="color: #5BC0BE"><%= @total_spend %></span> <span style="color: #1A1818"> €</p>
+      </div>
+    </div>
+
+
+
+  <div class="overview-box">
+    <h2 class="mt-1"><strong>Overview</strong></h2>
+    <ul>
+      <li>
+        <div>To spend on Maintenances:</div>
+        <div><%= @sum_undone_maintenances %> €</div>
+      </li>
+      <li>
+        <div>To spent on Problems:</div>
+        <div><%= @sum_undone_problems %> €</div>
+      </li>
+      <li>
+        <div>To spent on Wishlist Items:</div>
+        <div><%= @sum_undone_wishlist %> €</div>
+      </li>
+      <li>
+        <div>Spent on Maintenances:</div>
+        <div><%=@sum_maintenances %> €</div>
+      </li>
+      <li>
+        <div>Spent on Problems:</div>
+        <div><%= @sum_problems %> €</div>
+      </li>
+      <li>
+        <div>Spent on Wishlist Items:</div>
+        <div><%= @sum_wishlist %> €</div>
+      </li>
+    </ul>
   </div>
 </div>
