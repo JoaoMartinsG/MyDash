@@ -18,4 +18,7 @@ class ApplicationController < ActionController::Base
     overview_index_path
   end
 
+  def default_url_options
+    { host: ENV["DOMAIN"] || "localhost:3000" }
+  end
 end
