@@ -4,6 +4,9 @@
   width: 100vw;
   height: 55px;
   background-color: rgb(243, 243, 243);
+  .active {
+    color: rgb(91, 192, 190);
+  }
 }
 
 .navbar-bottom ul {
