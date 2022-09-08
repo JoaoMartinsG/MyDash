@@ -6,9 +6,9 @@
     <div class="card-product">
       <%= link_to vehicle_path(vehicle) do %>
         <% if vehicle.type_of_vehicle == 'Car' %>
-          <img src="https://www.carlogos.org/car-logos/<%= vehicle.make.downcase %>-logo.png" alt="Car Brand Logo" />
+          <img src="https://www.carlogos.org/car-logos/<%= vehicle.make.downcase %>-logo.png" alt="Brand Logo" />
         <% else %>
-            <%= image_tag "brands/#{vehicle.make.downcase}.png" %>
+            <%= image_tag bike_image(vehicle.make) %>
         <% end %>
       <% end %>
       <div class="card-product-infos">
