@@ -3,7 +3,7 @@ module ApplicationHelper
     formatted_brand = brand.downcase.gsub(' ', '')
     brands = %w[ducati benelli harleydavidson kawasaki keeway norton suzuki yamaha]
     if brands.include?(formatted_brand)
-      "brands/#{brand.downcase}.png"
+      "brands/#{formatted_brand}.png"
     else
       'Icons/motorbike_icon.png'
     end
