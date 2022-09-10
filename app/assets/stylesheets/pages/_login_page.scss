@@ -1,0 +1,18 @@
+.login {
+  height: 100vh;
+  background-image: url("https://images.unsplash.com/photo-1542282088-fe8426682b8f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80");
+  background-size: cover;
+}
+
+
+.logopos {
+  display: flex;
+  justify-content: center;
+}
+
+.logosm {
+  height: 80px;
+  width: 165px;
+  background-size: cover;
+  filter: drop-shadow(3px 2px 4px rgba(0, 0, 0, 0.6));
+}

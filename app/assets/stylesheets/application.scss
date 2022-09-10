@@ -10,16 +10,17 @@
 
 // Your CSS partials
 @import "components/index";
+@import "components/carousel";
+@import "components/problem_cards";
+@import "components/overview-header";
+@import "components/overview_boxes";
+@import "components/cards_show";
 @import "pages/index";
 @import "pages/global";
 @import "pages/font";
-@import "components/cards_show";
 @import "pages/problems_new";
 @import "pages/problems_edit";
 @import "pages/maintenance_new";
 @import "components/small-overview-cards";
 @import "pages/vehicles_show";
-@import "components/carousel";
-@import "components/problem_cards";
-@import "components/overview-header";
-@import "components/overview_boxes";
+@import "pages/login_page";
