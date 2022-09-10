@@ -1,13 +1,14 @@
 .login {
-  height: 100vh;
-  background-image: url("https://images.unsplash.com/photo-1542282088-fe8426682b8f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80");
-  background-size: cover;
-}
-
-
-.logopos {
   display: flex;
   justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  background: linear-gradient(180deg, rgba(28, 37, 65, 0.7) 0%, rgba(80, 169, 167, 0.7) 100%), url("https://images.unsplash.com/photo-1542282088-fe8426682b8f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80");
+  background-size: cover;
+  background-position: center;
+  width: 100vw;
+  height: 100vh;
 }
 
 .logosm {
@@ -15,4 +16,15 @@
   width: 165px;
   background-size: cover;
   filter: drop-shadow(3px 2px 4px rgba(0, 0, 0, 0.6));
+  margin-bottom: 30px;
+}
+
+.form-control {
+  background-color: rgba(128, 128, 128, 0.26);
+  border: none;
+}
+
+.form-control:focus {
+  background-color: rgba(128, 128, 128, 0.26);
+  border: none;
 }
