@@ -26,17 +26,20 @@ puts '----------------------------------------------------'
 puts '-------------- Creating our Users ------------------'
 puts '------------------ Please wait ... -----------------'
 
-joao = User.create(first_name: 'Joao', last_name: 'Martins', email: 'joao@lewagon.com', password: 'password')
+User.create(first_name: 'Joao', last_name: 'Martins', email: 'joao@lewagon.com', password: '123456')
 puts '--------- Joao User created successfully -----------'
 
-rafa = User.create(first_name: 'Rafael', last_name: 'Quintanilha', email: 'rafael@lewagon.com', password: 'password')
+User.create(first_name: 'Rafael', last_name: 'Quintanilha', email: 'rafael@lewagon.com', password: '123456')
 puts '--------- Rafa User created successfully -----------'
 
-alex = User.create(first_name: 'Alexandre', last_name: 'Corte-Real', email: 'alex@lewagon.com', password: 'password')
+User.create(first_name: 'Alexandre', last_name: 'Corte-Real', email: 'alex@lewagon.com', password: '123456')
 puts '--------- Alex User created successfully -----------'
 
-loch = User.create(first_name: 'Lochlan', last_name: 'Savage', email: 'lochlan@lewagon.com', password: 'password')
+User.create(first_name: 'Lochlan', last_name: 'Savage', email: 'lochlan@lewagon.com', password: '123456')
 puts '--------- Lochlan User created successfully --------'
+
+tester = User.create(first_name: 'Test', last_name: 'account', email: 'test@lewagon.com', password: '123456')
+puts '--------- Testing account created successfully -----'
 
 puts '----------------------------------------------------'
 puts '--------- All Users created successfully -----------'
@@ -46,11 +49,14 @@ puts '----------------------------------------------------'
 puts '---------------- Creating some Vehicles ------------'
 puts '------------------ Please wait ... -----------------'
 
-Vehicle.create(type_of_vehicle: 'Car', make: 'BMW', model: 'M5', plate: '73-TR-11', year: 2020, mileage: 3000, driver: 'Alex', user_id: rafa.id)
-Vehicle.create(type_of_vehicle: 'Motorcycle', make: 'Yamaha', model: 'R1', plate: '69-BB-69', year: 2022, mileage: 1500, driver: 'Joao', user_id: joao.id)
-Vehicle.create(type_of_vehicle: 'Car', make: 'Ferrari', model: 'SF90', plate: '54-HS-87', year: 2020, mileage: 10, driver: 'Lochlan', user_id: alex.id)
-Vehicle.create(type_of_vehicle: 'Car', make: 'Mercedes-Benz', model: 'A180', plate: '92-RT-74', year: 2005, mileage: 100_000, driver: 'Joao', user_id: loch.id)
-Vehicle.create(type_of_vehicle: 'Car', make: 'Lamborghini', model: 'Huracan', plate: '12-JT-45', year: 2012, mileage: 30_000, driver: 'Rafa', user_id: joao.id)
+Vehicle.create(type_of_vehicle: 'Motorcycle',
+               make: 'Suzuki',
+               model: 'GSXR-600',
+               plate: '73-TR-11',
+               year: 2022,
+               mileage: 100,
+               driver: 'Tester',
+               user_id: tester.id)
 
 puts '----------------------------------------------------'
 puts '--------- All Vehicles created successfully --------'
@@ -60,18 +66,32 @@ puts '----------------------------------------------------'
 puts '----------- Creating some Maintenances -------------'
 puts '------------------ Please wait ... -----------------'
 
-@vehicles = Vehicle.all
-@vehicles.each do |vehicle|
-  maintenance = Maintenance.new(title: 'Pay IUC', description: 'Pay circulation tax', repeat: false, priority: 'High', price: 150, status: false)
-  maintenance.vehicle_id = vehicle.id
-  maintenance.save
-  maintenance = Maintenance.new(title: 'Pay Insurance', description: 'Pay Insurance', repeat: true, priority: 'High', price: 300, status: false)
-  maintenance.vehicle_id = vehicle.id
-  maintenance.save
-  maintenance = Maintenance.new(title: 'Take car for inspection', description: 'Take car for inspection', repeat: false, priority: 'High', price: 35, status: false)
-  maintenance.vehicle_id = vehicle.id
-  maintenance.save
-end
+@vehicle = Vehicle.last
+maintenance = Maintenance.new(title: 'Pay IUC',
+                              description: 'Pay circulation tax',
+                              repeat: true,
+                              priority: 'High',
+                              price: 150,
+                              status: false)
+maintenance.vehicle_id = @vehicle.id
+maintenance.save
+
+maintenance = Maintenance.new(title: 'Pay Insurance',
+                              description: 'Pay Insurance',
+                              repeat: true, priority: 'High',
+                              price: 300,
+                              status: false)
+maintenance.vehicle_id = @vehicle.id
+maintenance.save
+
+maintenance = Maintenance.new(title: 'Take car for inspection',
+                              description: 'Take car for inspection',
+                              repeat: true,
+                              priority: 'High',
+                              price: 35,
+                              status: false)
+maintenance.vehicle_id = @vehicle.id
+maintenance.save
 
 puts '----------------------------------------------------'
 puts '----- All Maintenances created successfully --------'
@@ -81,11 +101,14 @@ puts '----------------------------------------------------'
 puts '------------- Creating some Problems ---------------'
 puts '------------------ Please wait ... -----------------'
 
-@vehicles.each do |vehicle|
-  problem = Problem.new(title: 'Engine Noise', description: 'Ticking Noise in Engine Bay', priority: 'High', price: 150, status: false)
-  problem.vehicle_id = vehicle.id
-  problem.save
-end
+problem = Problem.new(title: 'Engine Noise',
+                      description: 'Ticking Noise in Engine',
+                      priority: 'High',
+                      price: 150,
+                      status: false)
+
+problem.vehicle_id = @vehicle.id
+problem.save
 
 puts '----------------------------------------------------'
 puts '--------- All Problems created successfully --------'
@@ -95,14 +118,12 @@ puts '----------------------------------------------------'
 puts '---------- Creating some Wishlist Items ------------'
 puts '------------------ Please wait ... -----------------'
 
-@vehicles.each do |vehicle|
-  item = Wishlist.new(name: 'New Exhaust', url: 'https://www.amazon.es/-/pt/dp/B07DX4R3ZX/ref=sr_1_12?crid=ASW4H408BX62&keywords=exhaust&qid=1662467397&sprefix=exhaust%2Caps%2C108&sr=8-12', status: false, price: 627.53)
-  item.vehicle_id = vehicle.id
-  item.save
-  item2 = Wishlist.new(name: 'Thank YOU', url: 'https://img.freepik.com/premium-vector/thank-you-hand-lettering-thank-you-with-decorative-graphic_136321-1421.jpg?w=2000', status: false, price: 100_000)
-  item2.vehicle_id = vehicle.id
-  item2.save
-end
+item = Wishlist.new(name: 'New Exhaust',
+                    url: 'https://www.amazon.es/-/pt/dp/B07DX4R3ZX/ref=sr_1_12?crid=ASW4H408BX62&keywords=exhaust&qid=1662467397&sprefix=exhaust%2Caps%2C108&sr=8-12',
+                    status: false,
+                    price: 627.53)
+item.vehicle_id = @vehicle.id
+item.save
 
 puts '----------------------------------------------------'
 puts '--------- All Items created successfully -----------'
