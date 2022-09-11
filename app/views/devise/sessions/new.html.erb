@@ -1,27 +1,29 @@
-<div class="login">
+<style>
+  body { margin: 0; }
+</style>
+<div class="login background">
   <div class="logopos">
     <%= image_tag "logos/MyDashLogo2.png", class: "logosm" %>
   </div>
-</div>
-
-
-
-
-
-<%# <h2>Log in</h2> %>
-<%#= simple_form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: false}) do |f| %>
-  <%# <div class="form-inputs"> %>
-    <%#= f.input :email,
+  <div class="form">
+    <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: false}) do |f| %>
+      <div class="form-inputs">
+        <%= f.input :email,
                 required: false,
                 autofocus: true,
                 input_html: { autocomplete: "email" } %>
-    <%#= f.input :password,
+        <%= f.input :password,
                 required: false,
                 input_html: { autocomplete: "current-password" } %>
-    <%#= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
-  <%# </div> %>
-  <%# <div class="form-actions"> %>
-    <%#= f.button :submit, "Log in" %>
-  <%# </div> %>
-<%# end %>
-<%#= render "devise/shared/links" %>
+        <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+      </div>
+      <div class="form-actions">
+        <%= f.button :submit, "Log in", class: "log btn" %>
+        <%= render "devise/shared/links" %>
+        <%= link_to root_path do %>
+          <i class="fa-regular fa-circle-xmark quit mt-5"></i>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
