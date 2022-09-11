@@ -1,5 +1,6 @@
-<style> body { margin: 0; } </style>
-
+<style>
+  body { margin: 0; }
+</style>
 <div class="login background">
   <div class="logopos">
     <%= image_tag "logos/MyDashLogo2.png", class: "logosm" %>
@@ -17,9 +18,12 @@
         <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
       </div>
       <div class="form-actions">
-        <%= f.button :submit, "Log in" %>
+        <%= f.button :submit, "Log in", class: "log btn" %>
+        <%= render "devise/shared/links" %>
+        <%= link_to root_path do %>
+          <i class="fa-regular fa-circle-xmark quit mt-5"></i>
+        <% end %>
       </div>
     <% end %>
-    <%= render "devise/shared/links" %>
   </div>
 </div>
