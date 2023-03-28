@@ -27,7 +27,6 @@
 
 .card-product h2 {
   font-size: 20px;
-  // margin-left: 31px;
   margin-top: 10px;
   color: #435d7e;
   font-weight: bold;
@@ -44,11 +43,10 @@
 
 .card-product .card-product-infos {
   flex-grow: 1;
-  padding-left: 15px;
-}
+   padding-left: 15px;
+ }
 
 .card-product-alert {
-  // margin-bottom: 110px;
   margin-right: 8px;
   display: flex;
   align-items: center;
@@ -76,6 +74,10 @@
   color: #31313112;
 }
 
+#AddBtn:hover {
+  color: #5BC0BE;
+}
+
 .vehicle-icons {
   font-size: 18px;
   margin-top: 9px;
@@ -86,10 +88,48 @@
   margin-right: 22px;
 }
 
+.vehicles-container {
+  margin: 2em 1em;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.vehicles-header {
+  width: 100%;
+  height: 200px;
+  background: linear-gradient(180deg, rgba(28, 37, 65, 0.7) 0%, rgba(80, 169, 167, 0.7) 100%), url("logos/overview_banner3.jpg");
+  border-radius: 0px 0px 40px 40px;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2em;
+}
+
+.vehicles-header h2 {
+  color: white;
+}
+
+.vehicles-header h3 {
+  color: white;
+  margin-top: 1em;
+}
+.vehicles-header p {
+  color: white;
+  margin-top: -2.5em;
+}
+
 .logo-title {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background: linear-gradient(180deg, rgba(28, 37, 65, 0.7) 0%, rgba(80, 169, 167, 0.7) 100%), url("logos/overview_banner.png");
+  border-radius: 0px 0px 40px 40px;
+  background-size: cover;
+  background-position: center;
 }
 
 .logo-title h2 {
@@ -98,3 +138,10 @@
   margin-top: 15px;
   margin-bottom: 0;
 }
+
+@media (min-width: 499px) {
+.card-container, .plus-card{
+ margin: 0 auto;
+ width: 480px;
+ }
+ }

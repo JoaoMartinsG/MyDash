@@ -8,12 +8,12 @@
 <%# ------------------------------------------------- 3 Cards -------------------------------------------------------------------- %>
 <div class = "container-overview">
   <div class = "boxes d-flex justify-content-evenly text-center">
-    <div class="box1">
+    <div class="box">
       <p style="font-size: 25px; margin-top: 9px; margin-bottom: 0px; color: #5BC0BE"><strong><%= current_user.vehicles.count %></strong></p>
       <p style="font-size: 16px; margin-top: 0px; margin-bottom: 5px">Registered</p>
       <p style="font-size: 16px; margin-top: -7px; margin-bottom: 13px">Vehicles</p>
     </div>
-    <div class="box2">
+    <div class="box">
       <p style="font-size: 25px; margin-top: 9px; margin-bottom: 0px; color: #3A506B"><strong>
           <% @sum_of_undone_maintenance = 0 %>
           <% current_user.vehicles.each do |vehicle|  %>
@@ -27,19 +27,23 @@
       <p style="font-size: 16px; margin-top: 0px; margin-bottom: 5px">Undone</p>
       <p style="font-size: 16px; margin-top: -7px; margin-bottom: 13px">Tasks</p>
     </div>
-    <div class="box3">
-      <p style="font-size: 25px; margin-top: 9px; margin-bottom: 0px; color: #FF595E"><strong>
-          <% @sum_of_undone_problems = 0 %>
-          <% current_user.vehicles.each do |vehicle|  %>
-            <% vehicle.problems.where(status: false).each do |problem| %>
-              <%  @sum_of_undone_problems += 1 %>
+    <div class="box">
+      <div>
+        <p style="font-size: 25px; margin-top: 9px; margin-bottom: 0px; color: #FF595E"><strong>
+            <% @sum_of_undone_problems = 0 %>
+            <% current_user.vehicles.each do |vehicle|  %>
+              <% vehicle.problems.where(status: false).each do |problem| %>
+                <%  @sum_of_undone_problems += 1 %>
+              <% end %>
             <% end %>
-          <% end %>
-          <%= @sum_of_undone_problems %>
-        </strong>
-      </p>
-      <p style="font-size: 16px; margin-top: 0px; margin-bottom: 5px">Unresolved</p>
-      <p style="font-size: 16px; margin-top: -7px; margin-bottom: 13px">Problems</p>
+            <%= @sum_of_undone_problems %>
+          </strong>
+        </p>
+      </div>
+      <div>
+        <p style="font-size: 16px; margin-top: 0px; margin-bottom: 5px">Unresolved</p>
+        <p style="font-size: 16px; margin-top: -7px; margin-bottom: 13px">Problems</p>
+      </div>
     </div>
   </div>
     <%# ------------------------------------------------- Graph -------------------------------------------------------------------- %>
