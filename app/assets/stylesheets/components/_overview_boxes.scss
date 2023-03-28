@@ -1,31 +1,12 @@
-.box1{
+.box{
   background: #FFFFFF;
   border-radius: 20px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-  width: 94px;
+  width: 95px;
   height: 102px;
   margin: 0;
   font-family: 'Montserrat', sans-serif;
 }
-.box2{
-  background: #FFFFFF;
-  border-radius: 20px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-  width: 94px;
-  height: 102px;
-  margin: 0;
-  font-family: 'Montserrat', sans-serif;
-}
-.box3{
-  background: #FFFFFF;
-  border-radius: 20px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-  width: 94px;
-  height: 102px;
-  margin: 0;
-  font-family: 'Montserrat', sans-serif;
-}
-
 
 .total-spent {
   width: 170px;
@@ -55,4 +36,11 @@
   line-height: 20px;
   text-align: center;
   margin-top: 10px;
+}
+
+@media (min-width: 1024px) {
+  .box, .total-spent{
+    width: 17em;
+    margin: 1em 0;
+  }
 }

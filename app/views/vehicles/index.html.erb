@@ -1,48 +1,52 @@
-<div class = 'logo-title my-3 border-bottom'>
-  <div><%= image_tag "logos/MyDashLogo1.png", id:"logo-overview" %></div> <div><h2>Your Vehicles</h2></div>
+<div class = "vehicles-header">
+  <%= image_tag "logos/MyDashLogo1.png", id:"logo-overview" %>
+  <h2>Your Vehicles</h2>
 </div>
-<% current_user.vehicles.each do |vehicle| %>
-  <div class="col-xs-12 col-md-4 col-offset-4 mx-2">
-    <div class="card-product">
-      <%= link_to vehicle_path(vehicle) do %>
-        <% if vehicle.type_of_vehicle == 'Car' %>
-          <img src="https://www.carlogos.org/car-logos/<%= vehicle.make.downcase %>-logo.png" alt="Brand Logo" />
-        <% else %>
-            <%= image_tag bike_image(vehicle.make) %>
-        <% end %>
-      <% end %>
-      <div class="card-product-infos">
-        <%= link_to vehicle_path(vehicle) do %>
-          <h2><%= vehicle.make %> <%= vehicle.model %></h2>
-        <% end %>
-        <p><%= vehicle.plate %></p>
-        <p>Driver: <%= vehicle.driver %></p>
 
-        <div class="d-flex vehicle-icons" >
-          <%= link_to edit_vehicle_path(vehicle) do %>
-            <i class="fa-solid fa-pen"></i>
+<div class="vehicles-container">
+
+    <% current_user.vehicles.each do |vehicle| %>
+
+        <div class="card-product">
+          <%= link_to vehicle_path(vehicle) do %>
+            <% if vehicle.type_of_vehicle == 'Car' %>
+              <img src="https://www.carlogos.org/car-logos/<%= vehicle.make.downcase %>-logo.png" alt="Brand Logo" />
+            <% else %>
+                <%= image_tag bike_image(vehicle.make) %>
+            <% end %>
           <% end %>
-          <%= link_to vehicle_path(vehicle.id), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
-            <i class="fa-solid fa-trash-can"></i>
-          <% end %>
+          <div class="card-product-infos">
+            <%= link_to vehicle_path(vehicle) do %>
+              <h2><%= vehicle.make %> <%= vehicle.model %></h2>
+            <% end %>
+            <p><%= vehicle.plate %></p>
+            <p>Driver: <%= vehicle.driver %></p>
+
+            <div class="d-flex vehicle-icons" >
+              <%= link_to edit_vehicle_path(vehicle) do %>
+                <i class="fa-solid fa-pen"></i>
+              <% end %>
+              <%= link_to vehicle_path(vehicle.id), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
+                <i class="fa-solid fa-trash-can"></i>
+              <% end %>
+            </div>
+
+          </div>
+
+          <div class="card-product-alert">
+            <p style="color: #FF595E"> <%= vehicle.problems.where(status: false).count %> </p>
+            <h6>Problems</h6>
+            <p style="color: #5BC0BE"> <%= vehicle.maintenances.where(status: false).count %> </p>
+            <h6>Tasks</h6>
+          </div>
+
 
         </div>
-      </div>
-      <div class="card-product-alert">
-        <p style="color: #FF595E"> <%= vehicle.problems.where(status: false).count %> </p>
-        <h6>Problems</h6>
-        <p style="color: #5BC0BE"> <%= vehicle.maintenances.where(status: false).count %> </p>
-        <h6>Tasks</h6>
-      </div>
+    <% end %>
 
+</div>
 
-    </div>
-  </div>
-</div>
-<br>
-</div>
-<% end %>
-<div class="col-xs-12 col-md-4 col-offset-4 mx-2">
+<div>
   <div class="plus-card mb-4">
     <div class="card-product-infos">
       <div class="d-flex justify-content-center align-items-center">

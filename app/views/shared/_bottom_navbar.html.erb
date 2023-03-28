@@ -3,16 +3,19 @@
     <%= link_to overview_index_path do %>
       <li class="<%= "active" if params[:controller] == "overview" %>">
         <i class="fa-solid fa-house"></i>
+        <p>Home</p>
       </li>
     <% end %>
     <%= link_to vehicles_path do %>
       <li class="<%= "active" if params[:controller] == "vehicles" %>">
         <i class="fa-solid fa-car" style="font-size: 19px"></i>
+        <p>Vehicles</p>
       </li>
     <% end %>
     <%= link_to edit_user_registration_path do %>
       <li class="<%= "active" if params[:controller] == "devise/registrations" %>">
         <i class="fa-solid fa-user" style="font-size: 19px"></i>
+        <p>Account</p>
       </li>
     <% end %>
   </ul>
