@@ -2,11 +2,15 @@
   position: fixed;
   bottom: 0px;
   width: 100vw;
-  height: 55px;
-  background-color: rgb(243, 243, 243);
+  height: 60px;
+  background-color: rgb(91, 192, 190);;
   .active {
-    color: rgb(91, 192, 190);
+    color: rgb(228, 228, 228);
   }
+}
+
+.navbar-bottom p {
+  font-size: 0.9rem;
 }
 
 .navbar-bottom ul {

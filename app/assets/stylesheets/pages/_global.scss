@@ -11,17 +11,19 @@ li p {
 
 .nav {
   --bs-nav-link-color: #595959;
-  --bs-nav-link-hover-color: #0a58ca;
+  --bs-nav-link-hover-color: #468784;
   --bs-nav-link-disabled-color: #6c757d;
+  --bs-nav-tabs-border-width: 0px;
 
 }
 
-.nav-tabs {
-  border-bottom: var(--bs-nav-tabs-border-width) solid #696969 !important;
+.nav-tabs .active{
+  background-color: #468784;
 }
 
 .nav-item .active {
-  border-bottom: 2px solid rgb(49, 125, 255) !important;
+  border-bottom: 2px solid #468784 !important;
+  color: #468784;
   background-color: transparent !important;
   font-weight: bold;
   border-top: 0 !important;
@@ -30,5 +32,7 @@ li p {
 }
 
 .nav-item button {
-  font-size: 11px;
+  font-size: 0.9rem;
+  color: #595959;
 }
+

@@ -1,26 +1,28 @@
-<div class = 'logo-title mt-3'>
-  <div><%= image_tag "logos/MyDashLogo1.png", id:"logo-overview" %></div><h2 style = 'font-size: 20px'><strong><%= @vehicle.make %> <%= @vehicle.model %> - <%= @vehicle.year %></strong></h2>
-</div>
-<div class = 'd-flex justify-content-center'>
+
+<div class = "vehicles-header">
+  <%= image_tag "logos/MyDashLogo1.png", id:"logo-overview" %>
+  <h3 class="vehicle-info-head"><strong><%= @vehicle.make %> <%= @vehicle.model %> - <%= @vehicle.year %></strong></h3>
   <p><%= @vehicle.plate %></p>
 </div>
+
+
 <div class= 'd-flex justify-content-center mt-3'>
-  <ul class="nav nav-tabs w-100 justify-content-center" id="myTab" role="tablist">
+  <ul class="nav nav-tabs w-100 justify-content-evenly" id="myTab" role="tablist">
     <li class="nav-item" role="presentation">
-      <button class="nav-link <%= 'active' if params[:active] == 'overview' || params[:active].blank? %>" id="overview-tab" data-bs-toggle="tab" data-bs-target="#overview" type="button" role="tab" aria-controls="home" aria-selected="true">Overview</button>
+      <button class="nav-link <%= 'active' if params[:active] == 'overview' || params[:active].blank? %>" id="overview-tab" data-bs-toggle="tab" data-bs-target="#overview" type="button" role="tab" aria-controls="home" aria-selected="true"><i class="fa-regular fa-file-lines"></i> Overview</button>
     </li>
     <li class="nav-item" role="presentation">
-      <button class="nav-link <%= 'active' if params[:active] == 'maintenance' %>" id="maintenance-tab" data-bs-toggle="tab" data-bs-target="#maintenance" type="button" role="tab" aria-controls="maintenance" aria-selected="false">Maintenance</button>
+      <button class="nav-link <%= 'active' if params[:active] == 'maintenance' %>" id="maintenance-tab" data-bs-toggle="tab" data-bs-target="#maintenance" type="button" role="tab" aria-controls="maintenance" aria-selected="false"><i class="fa-solid fa-screwdriver-wrench"></i> Maintenance</button>
     </li>
     <li class="nav-item" role="presentation">
-      <button class="nav-link <%= 'active' if params[:active] == 'problems' %>" id="problems-tab" data-bs-toggle="tab" data-bs-target="#problems" type="button" role="tab" aria-controls="problems" aria-selected="false">Problems</button>
+      <button class="nav-link <%= 'active' if params[:active] == 'problems' %>" id="problems-tab" data-bs-toggle="tab" data-bs-target="#problems" type="button" role="tab" aria-controls="problems" aria-selected="false"><i class="fa-solid fa-circle-exclamation"></i> Problems</button>
     </li>
     <li class="nav-item" role="presentation">
-      <button class="nav-link <%= 'active' if params[:active] == 'wishlist' %>" id="wishlist-tab" data-bs-toggle="tab" data-bs-target="#wishlist" type="button" role="tab" aria-controls="wishlist" aria-selected="false">Wishlist</button>
+      <button class="nav-link <%= 'active' if params[:active] == 'wishlist' %>" id="wishlist-tab" data-bs-toggle="tab" data-bs-target="#wishlist" type="button" role="tab" aria-controls="wishlist" aria-selected="false"><i class="fa-solid fa-square-check"></i> Wishlist</button>
     </li>
   </ul>
 </div>
-<div class="tab-content d-flex justify-content-center mt-4" id="myTabContent">
+<div class="tab-content mt-4" id="myTabContent">
   <div class="tab-pane fade <%= 'active show' if params[:active] == 'overview' || params[:active].blank? %>" id="overview" role="tabpanel" aria-labelledby="overview-tab">
     <div class="small-overview-cards">
       <h2 class="d-flex justify-content-center mt-1"><strong>Expenses</strong></h2>
